@@ -3,10 +3,10 @@ require_once '../Include/conexion.php'
 
 class categoria{
     public static getCategoriaProductoActivo(){
-        $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = true";
+        $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute();
+            $resultado->execute(array(true));
             $tabla = $resultado->fetchAll(PDO::FETCH_ASSOC);
             return $tabla;
         }catch(PDOException $e){
