@@ -1,0 +1,86 @@
+.banner{
+    height: 160px;
+}
+.menu{
+    padding: 0;
+}
+.h1{
+    align-self: center;
+}
+.n{
+    padding: 1em;
+    margin: 0;
+}
+.mar{
+    margin: 1em 0;
+}
+.d,
+.n {
+    border: 1px solid #ccc;
+}
+.menu, 
+.session{
+    list-style: none;
+}
+.menu__link{
+    color: #000;
+}
+.menu__item{
+    padding: 1em 2em;
+}
+.menu__link:hover, 
+.session__link:hover{
+    text-decoration: none;
+}
+.menu__link:hover{
+    color: #000;
+}
+.menu__title{
+    font-size: 20px;
+    text-align: center;
+}
+.session__item{
+    display: inline-block;
+}
+
+.search__btn{
+    border: none;
+    border-radius:  0 .2em .2em 0;
+    height: 38px;
+}
+/* Estilos de la página del admin */
+.header {
+    min-width: 60vw;
+    margin-right: 0px;
+    height: 80px;
+}
+
+.menu-m {
+    background: hsl(0, 0%, 20%);
+    min-height: 87.3vh;
+}
+
+.menu-m a {
+    color: #FFF;
+}
+
+.pg {
+    padding: 10px 0px 0px 10px;
+}
+
+.tamanio {
+    font-size: 48px;
+}
+
+.search {
+    width: 50%;
+}
+
+.form-tam {
+    max-width: 80%;
+}
+
+.tam {
+    height: 50px;
+    width: 50px;
+}
