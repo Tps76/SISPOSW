@@ -4,9 +4,8 @@ class adminController
 {
     public static function Template()
     {
-        if (isset($_SESSION['admin'])) {
-            $template = "Vistas/";
-        }
+        $template = "Vistas/template.php";
+        include $template;
     }
     
     public static function RutaController()
