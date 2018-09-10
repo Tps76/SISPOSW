@@ -2,7 +2,7 @@
 require_once 'conexion.php';
 
 class producto{
-    public static getAllProducto($idcatproducto){
+    public static function getAllProducto($idcatproducto){
         $sql = "SELECT idproducto,idproveedor,nombre_producto,venta_producto,imagen_producto,compra_producto FROM producto WHERE idcatproducto = ?, estado_producto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -14,7 +14,7 @@ class producto{
         }
     }
 
-    public static insertProducto($datos){
+    public static function insertProducto($datos){
         $sql = "INSERT INTO producto(idcatproducto,idproveedor,nombre_producto,venta_producto,imagen_producto,compra_producto) VALUES(?,?,?,?,?,?)";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -25,7 +25,7 @@ class producto{
         }
     }
 
-    public static updateProducto($datos){
+    public static function updateProducto($datos){
         $sql = "UPDATE producto SET idproveedor = ?,nombre_producto = ?,venta_producto = ?,imagen_producto = ?,compra_producto = ? WHERE idcatproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -36,7 +36,7 @@ class producto{
         }
     }
 
-    public static desactivarProducto($id){
+    public static function desactivarProducto($id){
         $sql = "UPDATE producto SET estado_producto = false WHERE idproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -47,7 +47,7 @@ class producto{
         }
     }
 
-    public static activarProducto($id){
+    public static function activarProducto($id){
         $sql = "UPDATE producto SET estado_producto = true WHERE idproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
