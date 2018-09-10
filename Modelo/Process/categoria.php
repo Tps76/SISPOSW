@@ -6,6 +6,6 @@ class categoria{
         $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = '".true."'";
         $resultado = connection::getInstance()->getBD()->prepare($consultar);
         $resultado->execute();
-        $tabla = 
+        $tabla = $resultado;
     }
 }
