@@ -54,7 +54,7 @@ class producto{
             $resultado->execute(array($id));
             return true;
         }catch(PDOException $e){
-            return false;
+            return false; 
         }
     }
 
