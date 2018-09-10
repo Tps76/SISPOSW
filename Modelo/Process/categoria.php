@@ -1,8 +1,8 @@
 <?php
-require_once '../Include/conexion.php'
 
-class categoria{
-    public static getCategoriaProductoActivo(){
+class Categoria
+{
+    public static function getCategoriaProductoActivo(){
         $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = true";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -14,7 +14,7 @@ class categoria{
         }
     }
 
-    public static insertCategoriaProducto($nombre){
+    public static function insertCategoriaProducto($nombre){
         $sql = "INSERT INTO categoria_producto(nombre_categoria) VALUES(?)";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -25,7 +25,7 @@ class categoria{
         }
     }
 
-    public static updateCategoriaProducto($nombre){
+    public static function updateCategoriaProducto($nombre){
         $sql = "UPDATE categoria_producto SET nombre_categoria = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -36,7 +36,7 @@ class categoria{
         }
     }
 
-    public static desactivarCategoriaProducto($id){
+    public static function desactivarCategoriaProducto($id){
         $sql = "UPDATE categoria_producto SET estado_categoria = false WHERE idcatproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
@@ -47,7 +47,7 @@ class categoria{
         }
     }
 
-    public static activarCategoriaProducto($id){
+    public static function activarCategoriaProducto($id){
         $sql = "UPDATE categoria_producto SET estado_categoria = true WHERE idcatproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
