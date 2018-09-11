@@ -20,8 +20,10 @@ function validar(){
     var user = $('#user').val();
     var pass = $('#pass').val(); 
     if (id!="" && name!="" && lastname!="" && tel!="" && cel!="" && email!="" && dir!="" && user!="" && pass!="") {
-        document.getElementById("boton_enviar_registro").removeAttribute('disabled');
+        // document.getElementById("boton_enviar_registro").removeAttribute('disabled');
+        $("#boton_enviar_registro").removeAttr('disabled');
     }else{
-        document.getElementById("boton_enviar_registro").setAttribute('disabled' , 'diabled');
+        $("#boton_enviar_registro").attr('disabled', 'disabled');
+        // document.getElementById("boton_enviar_registro").setAttribute('disabled' , 'diabled');
     }
 }
