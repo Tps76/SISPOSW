@@ -46,7 +46,7 @@
                     <form action="../Controlador/Controlador.php?accion=registrar" method="post" class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for="">Seleccion de tipo de usuario: </label>
+                                <label for="">Seleccion de tipo de documento: </label>
                                 <select class="form-control" name="tipo_identificacion" id="identificacion">
                                 <option value="cedula">Cedula</option>
                                 </select>
@@ -68,11 +68,11 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="name">Nombres:</label>
-                                <input type="text" class="form-control" name="name" id="name">
+                                <input type="text" class="form-control" name="name" id="name" onkeyup="validar()" onchange="validar()">
                             </div>
                             <div class="col">
                                 <label for="last-name">Apellido:</label>
-                                <input type="text" class="form-control" name="last-name" id="last-name">
+                                <input type="text" class="form-control" name="last-name" id="last-name" onkeyup="validar()" onchange="validar()">
                             </div>
                             <div class="col">
                                 <div class="form-check-inline mt-4">
@@ -103,15 +103,15 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="">Fecha de nacimiento: </label>
-                                <input type="date" name="date" class="form-control" max="3000-12-31" min="1000-01-01" />
+                                <input type="date" name="date" class="form-control" max="3000-12-31" min="1000-01-01"/>
                             </div>
                             <div class="col">
                                 <label for="tel">Telefono:</label>
-                                <input type="text" class="form-control" name="tel" id="tel">
+                                <input type="text" class="form-control" name="tel" id="tel" onkeyup="validar()" onchange="validar()">
                             </div>
                             <div class="col">
                                 <label for="cel">Celular:</label>
-                                <input type="text" class="form-control" name="cel" id="cel">
+                                <input type="text" class="form-control" name="cel" id="cel" onkeyup="validar()" onchange="validar()">
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -121,7 +121,7 @@
                             </div>
                             <div class="col">
                                 <label for="dir">Dirección:</label>
-                                <input type="text" class="form-control" name="dir" id="dir">
+                                <input type="text" class="form-control" name="dir" id="dir" onkeyup="validar()" onchange="validar()">
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -131,7 +131,7 @@
                             </div>
                             <div class="col">
                                 <label for="pass">Contraseña:</label>
-                                <input type="text" class="form-control" name="pass" id="pass">
+                                <input type="text" class="form-control" name="pass" id="pass" onkeyup="validar()" onchange="validar()">
                             </div>
                         </div>                
                         <div class="text-right mt-3">

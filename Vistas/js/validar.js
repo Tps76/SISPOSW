@@ -1,25 +1,47 @@
 function validar(){
     var id = $('#id').val();
+    var id_valido = "";
     var dato_id = "identidad";
-    var indice = "Start"
-    $.post( '../Modelo/modelo_validar.php',{ indice: indice ,requerido: id, dato: dato_id} ).done( function(respuesta)
+    var indice = "Start";
+    var campo = "numero_identidad";
+    $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: id, dato: dato_id, campo: campo} ).done( function(respuesta)
 	{
-        console.log(respuesta);
 		if(respuesta=="true"){
            $('#id').css("border-color", "red");
+           id_valido = "";
         }else{
            $('#id').css("border-color", "green");
+           id_valido = "si";
         }
-	});
+    });
+    console.log(id_valido);
+
     var name = $('#name').val();
     var lastname = $('#last-name').val();
     var tel = $('#tel').val();
     var cel = $('#cel').val();
-    var email = $('#email').val();
+
+    var email = $('#emai').val();
+    var email_valido = "";
+    var dato_email = "usuario";
+    var indice = "Start";
+    var campo = "email_usuario";
+    $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: email, dato: dato_email, campo: campo} ).done( function(respuesta)
+	{
+        console.log(respuesta);
+		if(respuesta=="true"){
+           $('#emai').css("border-color", "red");
+           email_valido = "";
+        }else{
+           $('#emai').css("border-color", "green");
+           email_valido = "si";
+        }
+	});
+
+    console.log(email_valido);
     var dir = $('#dir').val();
-    var user = $('#user').val();
     var pass = $('#pass').val(); 
-    if (id!="" && name!="" && lastname!="" && tel!="" && cel!="" && email!="" && dir!="" && user!="" && pass!="") {
+    if (id_valido!="" && name!="" && lastname!="" && tel!="" && cel!="" && email_valido!="" && dir!="" && pass!="") {
         // document.getElementById("boton_enviar_registro").removeAttribute('disabled');
         $("#boton_enviar_registro").removeAttr('disabled');
     }else{
