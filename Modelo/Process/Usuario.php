@@ -48,7 +48,15 @@ class Usuario
     }
     public function regUsuario($datos)
     {
-        $consulta = "";
+        //estado de usuario
+        $consulta = "INSERT INTO usuario (email_usuario, password_usuario, tipo_usuario)VALUES(?,?,?)";
+        try{
+            $resultado = connection::getInstance()->getBD()->prepare($consulta);
+            $resultado->execute(array($datos["idusuario"],$datos["email_usuario"],$datos["password_usuario"],$datos["tipo_usuario"],$datos["estado_usuario"]));
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
     }
     /* =========== SELECCIONAR ============ */
     public function getId($numero)
@@ -95,6 +103,37 @@ class Usuario
             return $stmt->fetch();
         }else {
             return "error";
+        }
+    }
+    // activar y desactivar usuario tabla usuario
+    public function desactivarUsuario($id){
+        $sql = "UPDATE usuario SET estado_proveedor = false WHERE idusuario = ?";
+        try{
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($id));
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+    public function activarUsuario($id){
+        $sql = "UPDATE usuario SET estado_proveedor = true WHERE idusuario = ?";
+        try{
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($id));
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+    public static function updateUsuario($datos){
+        $sql = "UPDATE usuario SET email_usuario = ?,password_usuario = ? WHERE idusuario = ?";
+        try{
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($datos["idusuario"],$datos["password_usuario"]));
+            return true;
+        }catch(PDOException $e){
+            return false;
         }
     }
 }
