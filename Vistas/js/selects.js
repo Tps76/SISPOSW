@@ -1,5 +1,5 @@
 $(function(){
-	$.post( '../Modelo/modelo_selects.php' ).done( function(respuesta)
+	$.post( 'Modelo/Process/modelo_selects.php' ).done( function(respuesta)
 	{
 		$( '#pais' ).html( respuesta );
 	});
@@ -8,7 +8,7 @@ $(function(){
         var indice = $(this).val();
         var requerido = "departamento";
         var contencion= "pais";
-		$.post( '../Modelo/modelo_selects.php', { indice: indice ,requerido: requerido, contencion: contencion}).done( function( respuesta )
+		$.post( 'Modelo/Process/modelo_selects.php', { indice: indice ,requerido: requerido, contencion: contencion}).done( function( respuesta )
 		{
 			$( '#departamento' ).html( respuesta );
 		});
@@ -18,7 +18,7 @@ $(function(){
 		var indice = $(this).val();
         var requerido = "ciudad";
         var contencion= "departamento";
-		$.post( '../Modelo/modelo_selects.php', { indice: indice ,requerido: requerido, contencion: contencion}).done( function( respuesta )
+		$.post( 'Modelo/Process/modelo_selects.php', { indice: indice ,requerido: requerido, contencion: contencion}).done( function( respuesta )
 		{
 			$( '#ciudad' ).html( respuesta );
 		});
