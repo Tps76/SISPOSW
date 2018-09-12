@@ -7,14 +7,15 @@ class Ruta
         // $enlace = $url;
         if ($enlace == "panel" || $enlace == "productos" || $enlace == "addProducto" || 
             $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" || 
-            $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor") {
+            $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor" ||
+            $enlace == "categorias" || $enlace == "reportes") {
 
-            $module = "views/modules/". $enlace .".php";
+            $module = "Vistas/modules/". $enlace .".php";
 
         }else if("index"){
-            $module = "views/modules/panel.php";
+            $module = "Vistas/modules/panel.php";
         }else{
-            $module = "views/modules/panel.php";
+            $module = "Vistas/modules/panel.php";
         }
         return $module;
     }
@@ -25,12 +26,12 @@ class Ruta
             $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" ||
             $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor") {
 
-            $module = "views/modules/" . $enlace . ".php";
+            $module = "Vistas/modules/" . $enlace . ".php";
 
         } else if ("index") {
-            $module = "views/modules/panel.php";
+            $module = "Vistas/modules/panel.php";
         } else {
-            $module = "views/modules/panel.php";
+            $module = "Vistas/modules/panel.php";
         }
         return $module;
     }

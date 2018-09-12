@@ -67,7 +67,7 @@ class CarritoController
     {
         unset($_SESSION['carrito'][$code]);
         $this->updateCart();
-        return true;
+        return "1";
     }
     public function updateCart()
     {

@@ -12,7 +12,7 @@ class adminController
     {
         if (isset($_GET['action'])) {
             $enlace = $_GET['action'];
-            $vista = Ruta::rutaAdmin();
+            $vista = Ruta::rutaAdmin($enlace);
         }else{
             $vista = "Vistas/modules/panel.php";
         }
