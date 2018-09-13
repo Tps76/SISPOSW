@@ -11,3 +11,8 @@ require_once "Modelo/Process/Carrito.php";
 require_once "Modelo/Process/Usuario.php";
 require_once "Modelo/Process/Ruta.php";
 // require_once "Modelo/Process/.php";
+/* ======================
+    Constantes Necesarias
+   ====================== */
+define('TITLE1', 'Dashboard - SISPOSW');
+define('TITLE2', 'Tienda Virtual - SISPOSW');
