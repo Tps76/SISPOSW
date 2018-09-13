@@ -48,7 +48,7 @@
                         </div>
                         <select id="m_pago" class="form-control">
                             <option selected>Seleccione Categoría</option>
-                            <?php $select->selectCat(); ?>
+                            <?php //$select->selectCat(); ?>
                         </select>
                     </div>
                     <div class="col input-group">
@@ -57,7 +57,7 @@
                         </div>
                         <select id="m_pago" class="form-control">
                             <option selected>Seleccione el Proveedor</option>
-                            <?php $select->selectProv(); ?>
+                            <?php //$select->selectProv(); ?>
                         </select>
                     </div>
                 </div>

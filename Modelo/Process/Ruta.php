@@ -19,20 +19,20 @@ class Ruta
         }
         return $module;
     }
-    public function rutaCliente()
-    {
-        // Arreglar para la página del cliente
-        if ($enlace == "panel" || $enlace == "productos" || $enlace == "addProducto" ||
-            $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" ||
-            $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor") {
+    // public function rutaCliente()
+    // {
+    //     // Arreglar para la página del cliente
+    //     if ($enlace == "panel" || $enlace == "productos" || $enlace == "addProducto" ||
+    //         $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" ||
+    //         $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor") {
 
-            $module = "Vistas/modules/" . $enlace . ".php";
+    //         $module = "Vistas/modules/" . $enlace . ".php";
 
-        } else if ("index") {
-            $module = "Vistas/modules/panel.php";
-        } else {
-            $module = "Vistas/modules/panel.php";
-        }
-        return $module;
-    }
+    //     } else if ("index") {
+    //         $module = "Vistas/modules/panel.php";
+    //     } else {
+    //         $module = "Vistas/modules/panel.php";
+    //     }
+    //     return $module;
+    // }
 }
