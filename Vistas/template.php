@@ -11,12 +11,10 @@
     <link rel="stylesheet" href="Vistas/css/style.css">
     <title>
         <?php  
-            if (isset($_SESSION['admin'])) {
-                echo "Admin - Dashboard";
-            }elseif(isset($_SESSION['empleado'])){
-                echo "Dashboard";
+            if (isset($_SESSION['admin']) || isset($_SESSION['empleado'])) {
+                echo TITLE1;
             }else{
-                echo "Tienda Virtual - SISPOSW";
+                echo TITLE2;
             }
         ?>
     </title>
