@@ -1,5 +1,4 @@
 <?php
-require_once 'conexion.php';
 
 class producto{
     public static function getAllProducto($idcatproducto){

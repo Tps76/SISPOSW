@@ -11,6 +11,8 @@ require_once "Modelo/Process/Carrito.php";
 require_once "Modelo/Process/Usuario.php";
 require_once "Modelo/Process/Ruta.php";
 require_once "Modelo/Process/categoria.php";
+require_once "Modelo/Process/producto.php";
+require_once "Modelo/Process/proveedor.php";
 /* ======================
     Constantes Necesarias
    ====================== */

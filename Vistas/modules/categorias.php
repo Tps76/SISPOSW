@@ -1,3 +1,4 @@
+<?php adminController::addCategories(); ?>
 <div class="row mt-4">
     <div class="col-md-3">
         <div class="card">
@@ -8,7 +9,7 @@
                 <div class="row">
                     <form method="POST">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Nombre categoría">
+                        <input type="text" name=addCat class="form-control" placeholder="Nombre categoría">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -21,11 +22,11 @@
         </div>
     </div>
     <div class="col-md-9">
-        <table class="table table-striped table-bordered">
+        <table class="table table-responsive-sm table-striped table-bordered">
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Nombre</th>
+                    <th class=col>Nombre</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

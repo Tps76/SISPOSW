@@ -34,9 +34,9 @@
                 
                     <?php 
                     if(!isset($_POST['buscar'])){
-                        $prov->getProvAll();  
+                        // adminController::getProvAll();  
                     }else{
-                        $prov->searchProv();
+                        // adminController::searchProv();
                     }
                     ?>
                     <!-- <td>123543627752432</td>
