@@ -72,6 +72,31 @@ class adminController
         }
     }
 
+    public static function getAllProd()
+    {
+        $prods = producto::viewAllProductos();
+        if ($prods) {
+            // echo "<pre>";
+            // print_r($prods);
+            foreach($prods as $prod){
+                echo '<tr>
+                        <td>'.$prod['idproducto'].'</td>
+                        <td>'.$prod['nombre_producto'].'</td>
+                        <td>'.$prod['idcatproducto'].'</td>
+                        <td>'.$prod['razon_social'].'</td>
+                        <td>'.$prod['cantidad_stock'].'</td>
+                        <td>'.$prod['venta_producto'].'</td>
+                        <td>
+                            <div class="d-flex justify-content-around">
+                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
+                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
+                            </div>
+                        </td>
+                    </tr>';
+            }
+        }
+    }
+
     public static function addCategories()
     {
         if ($_SERVER['REQUEST_METHOD'] == "post") {
@@ -100,9 +125,35 @@ class adminController
                                "RS" => $_POST['RSProv']
                         );
                 $prov = Proveedor::regProv($datos);
-                
+            }
+        }
+    }
 
-
+    public static function addProducto()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            // Subir imagen al servidor
+            if (isset($_FILES['img'])) {
+                $dir = $_SERVER['DOCUMENT_ROOT']."SISPOSW/Vistas/assets/uploads";
+                $img = $_FILES['img'];
+                $share = uploadFile::upload($dir, $img);
+            }else{
+                $share = null;
+            }
+            if (isset($_POST['code'])) {
+                $datos = array(
+                    "code" => $_POST['code'],
+                    "name" => $_POST['name'],
+                    "priceSale" => $_POST['priceSale'],
+                    "priceBuy" => $_POST['priceBuy'],
+                    "cat" => $_POST['idcat'],
+                    "prov" => $_POST['idprov'],
+                    "cant" => $_POST['cant'],
+                    "img" => $share                
+                );
+                $prod = producto::insertProducto($datos);
+                $stock= producto::addStock($datos);
+                // echo $prod;
             }
         }
     }
@@ -176,7 +227,7 @@ class adminController
         $categories = Categoria::getCategoriaProductoActivo();
         if ($categories) {
             foreach ($categories as $category) {
-                echo '<option value="' . $category['idcategoria'] . '">'.$category['nombre_categoria'].'</option>';
+                echo '<option value="' . $category['idcatproducto'] . '">'.$category['nombre_categoria'].'</option>';
             }
         }
     }

@@ -1,5 +1,4 @@
-<?php $select = new adminController();  ?>
-<!-- NOTA: hay que añadir los names en los inputs -->
+<?php adminController::addProducto(); ?>
 <div class="container col-8 mt-4 mx-0">
    <div class="card">
        <div class="card-header">
@@ -10,15 +9,15 @@
                 <div class="row">
                     <div class="col input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
+                            <span class="input-group-text"><i class="material-icons">confirmation_number</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Código">
+                        <input class="form-control" name=code type="text" placeholder="Código">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="material-icons">phone_iphone</i></span>
+                            <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Nombre">
+                        <input class="form-control" name=name type="text" placeholder="Nombre">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -26,7 +25,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">local_atm</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Precio venta">
+                        <input class="form-control" name=priceSale type="text" placeholder="Precio venta">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -35,7 +34,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">local_atm</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Precio compra">
+                        <input class="form-control" name=priceBuy type="text" placeholder="Precio compra">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -67,7 +66,7 @@
                             <span class="input-group-text"><i class="material-icons">folder_open</i></span>
                         </div>
                         <div class="custom-file">
-                            <input class="custom-file-input" type="file" lang="es">
+                            <input class="custom-file-input" name=img type="file" lang="es">
                             <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                         </div>
                     </div>
@@ -75,7 +74,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">exposure_plus_1</i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Cantidad">
+                        <input type="text" name=cant class="form-control" placeholder="Cantidad">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -83,7 +82,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">description</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Descripción">
+                        <input class="form-control" name=desc type="text" placeholder="Descripción">
                     </div>
                 </div>
                 <div class="row mt-4">

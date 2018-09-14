@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-stried table-bordered">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">NIT</th>
