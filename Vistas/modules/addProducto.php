@@ -46,18 +46,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">details</i></span>
                         </div>
-                        <select id="m_pago" class="form-control">
+                        <select id="cat" name="idcat" class="form-control">
                             <option selected>Seleccione Categoría</option>
-                            <?php //adminController::selectCat(); ?>
+                            <?php adminController::selectCat(); ?>
                         </select>
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">assignment_ind</i></span>
                         </div>
-                        <select id="m_pago" class="form-control">
+                        <select id="prov" name="idprov" class="form-control">
                             <option selected>Seleccione el Proveedor</option>
-                            <?php //adminController::selectProv(); ?>
+                            <?php adminController::selectProv(); ?>
                         </select>
                     </div>
                 </div>
