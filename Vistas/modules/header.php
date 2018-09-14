@@ -47,7 +47,8 @@
                         <div class="row">
                             <div class="col">
                                 <label for="">Seleccion de tipo de documento: </label>
-                                <select class="form-control" name="tipo_identificacion" id="identificacion">
+                                <select class="form-control" name="tipo_identificacion" id="identificacion" onchange="validar()">
+                                <option selected>tipo de documento</option>
                                 <option value="cedula">Cedula</option>
                                 </select>
                             </div>
@@ -57,7 +58,7 @@
                             </div>
                             <div class="col">
                                 <label for="ad">Seleccion de tipo de usuario: </label>
-                                <select class="form-control" name="tipo_usuario" id="ad">
+                                <select class="form-control" name="ad" id="ad" onchange="validar()">
                                     <option selected>Escoja Usuario</option>
                                     <option value="administrador">Administrador</option>
                                     <option value="empleado">Empleado</option>
@@ -75,12 +76,12 @@
                                 <input type="text" class="form-control" name="last-name" id="last-name" onkeyup="validar()" onchange="validar()">
                             </div>
                             <div class="col">
-                                <div class="form-check-inline mt-4">
-                                    <label for="genere" class="form-check-label mt-2">Genero:
-                                        <input type="radio" class="form-check-input" name="genero" value="M" id="m">Masculino
-                                        <input type="radio" class="form-check-input" name="genero" value="F" id="f">Femenino
-                                    </label> 
-                                </div>
+                                    <label for="genero">Genero: </label>
+                                       <select class="form-control" name="genero" id="genero" onchange="validar()">
+                                          <option selected>Seleccione su genero</option>
+                                          <option value="m">Masculino</option>
+                                          <option value="f">Femenino</option>
+                                       </select>
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -95,15 +96,15 @@
                                 </select> 
                             </div>
                             <div class="col">
-                                <select id="ciudad" name="ciudad" class="custom-select">
-                                    <option selected>Seleccione su ciudad</option>
+                                <select id="ciudad" name="ciudad" class="custom-select" onchange="validar()">
+                                    <option selected value="0">Seleccione su ciudad</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="">Fecha de nacimiento: </label>
-                                <input type="date" name="date" class="form-control" max="3000-12-31" min="1000-01-01"/>
+                                <input type="date" name="date" id="nacimiento" class="form-control" max="3000-12-31" min="1000-01-01" onchange="validar()" />
                             </div>
                             <div class="col">
                                 <label for="tel">Telefono:</label>
