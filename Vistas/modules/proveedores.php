@@ -5,12 +5,14 @@
             <div class="d-flex justify-content-between">
                 <h3>Lista de Proveedores</h3>
                 <!-- Funcionalidad para el buscador -->
-                <div class="input-group mb-3 d-flex search">
-                    <input class="form-control" type="search" placeholder="Introduzca nombre o nit del proveedor">
-                    <div class="input-group-append">
-                        <button class="btn btn-dark" type="submit">Buscar</button>
+                <form method="post" class=search>
+                    <div class="input-group mb-3 d-flex">
+                        <input class="form-control" name=prov type="search" placeholder="Introduzca nombre o nit del proveedor">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">Buscar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
                 <a class="btn btn-success d-flex align-item-center mb-3" href="index.php?action=addProveedor"><i class="material-icons mr-2">add_circle_outline</i>Añadir Proveedor</a>
             </div>
         </div>
@@ -33,24 +35,12 @@
                         en las td llenar los campos -->
                 
                     <?php 
-                    if(!isset($_POST['buscar'])){
-                        // adminController::getProvAll();  
+                    if(!isset($_POST['prov'])){
+                        adminController::getProvAll();  
                     }else{
-                        // adminController::searchProv();
+                        adminController::searchProv();
                     }
                     ?>
-                    <!-- <td>123543627752432</td>
-                    <td>Samsung</td>
-                    <td>carrera 1 # 54 - 65</td>
-                    <td>samsung.oficial@gmail.com</td>
-                    <td>1329495232</td>
-                    <td>23/09/2018</td>
-                    <td>
-                        <div class="d-flex justify-content-between">
-                            <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
-                            <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
-                        </div>
-                    </td> -->
                     
                 </tbody>
             </table>
@@ -146,7 +136,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><?php echo "colocar el nombre aquí" ?></p>
+                <p><?php ?></p>
             </div>
             <div class="modal-footer">
                 <form method="post">

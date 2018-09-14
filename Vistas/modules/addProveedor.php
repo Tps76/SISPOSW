@@ -35,6 +35,23 @@
                     </div>
                 </div>
                 <div class="row mt-3">
+                    <div class="col">
+                        <select id="pais" name="pais" class="form-control">
+                            <?php adminController::selectPais(); ?>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="depto" name="depto" class="form-control">
+                            <option value="">Seleccione País primero</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="ciudad" name="ciudad" class="form-control">
+                            <option value="">Seleccione Departamento primero</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">drafts</i></span>

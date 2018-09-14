@@ -25,12 +25,12 @@ class Proveedor
     }
     public function getAllProv()
     {
-        $consulta = "SELECT * FROM proveedres WHERE estado_proveedor = true";
+        $consulta = "SELECT * FROM proveedor WHERE estado_proveedor = true";
         $con = connection::getInstance();
         $db = $con->getBD();
         $stmt = $db->prepare($consulta);
         if ($stmt->execute()) {
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }else{
             return "error";
         }
