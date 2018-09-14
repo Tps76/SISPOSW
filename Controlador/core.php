@@ -10,7 +10,7 @@ require_once "Modelo/Include/config.php";
 require_once "Modelo/Process/Carrito.php";
 require_once "Modelo/Process/Usuario.php";
 require_once "Modelo/Process/Ruta.php";
-// require_once "Modelo/Process/.php";
+require_once "Modelo/Process/categoria.php";
 /* ======================
     Constantes Necesarias
    ====================== */

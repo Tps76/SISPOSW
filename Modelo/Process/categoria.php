@@ -1,18 +1,12 @@
 <?php
 
-<<<<<<< HEAD
-class categoria{
-    public static getCategoriaProductoActivo(){
-        $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = ?";
-=======
 class Categoria
 {
     public static function getCategoriaProductoActivo(){
         $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = true";
->>>>>>> 3e33ea8c439f13f089a72c4b2f34458dd6a5075a
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array(true));
+            $resultado->execute();
             $tabla = $resultado->fetchAll(PDO::FETCH_ASSOC);
             return $tabla;
         }catch(PDOException $e){
