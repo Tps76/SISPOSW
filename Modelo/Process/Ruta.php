@@ -6,7 +6,7 @@ class Ruta
     {
         // $enlace = $url;
         if ($enlace == "panel" || $enlace == "productos" || $enlace == "addProducto" || 
-            $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" || 
+            $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" ||  
             $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor"||
             $enlace == "categorias") {
 

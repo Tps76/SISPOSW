@@ -43,7 +43,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../Controlador/Controlador.php?accion=registrar" method="post" class="form-group">
+                    <form action="../Modelo/process/Usuario.php/action=regId" method="post" class="form-group">
                         <div class="row">
                             <div class="col">
                                 <label for="">Seleccion de tipo de documento: </label>
@@ -55,15 +55,6 @@
                             <div class="col">
                                 <label for="id">Identificación:</label>
                                 <input type="text" class="form-control" name="id" id="id" onkeyup="validar()" onchange="validar()">
-                            </div>
-                            <div class="col">
-                                <label for="ad">Seleccion de tipo de usuario: </label>
-                                <select class="form-control" name="ad" id="ad" onchange="validar()">
-                                    <option selected>Escoja Usuario</option>
-                                    <option value="administrador">Administrador</option>
-                                    <option value="empleado">Empleado</option>
-                                    <option value="cliente">Cliente</option>
-                                </select>
                             </div>
                         </div>
                         <div class="row mt-3">

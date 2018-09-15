@@ -18,8 +18,10 @@ require_once "Modelo/Process/producto.php";
 require_once "Modelo/Process/proveedor.php";
 require_once "Modelo/Process/Selects.php";
 require_once "Modelo/Process/uploadFile.php";
+
 /* ======================
     Constantes Necesarias
    ====================== */
 define('TITLE1', 'Dashboard - SISPOSW');
 define('TITLE2', 'Tienda Virtual - SISPOSW');
+

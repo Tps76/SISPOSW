@@ -444,27 +444,13 @@ class adminController
                             </div>
                         </td>
                     </tr>';
+
+                header("Location: ../Vistas/index.php?msg=$consultas");
+            } else {
+                $consultas = "Datos incorrectos, sesion no iniciada";
+                header("Location: ../Vistas/index.php?msg=$consultas");
             }
         }
     }
 
-    public static function selectProv()
-    {
-        $provs = Proveedor::getAllProv();
-        if ($provs != "error") {
-            foreach ($provs as $prov) {
-                echo '<option value="'.$prov['idproveedor'].'">'.$prov['razon_social']." - ".$prov['nombre_proveedor']." ".$prov['apellido_proveedor'].'</option>';
-            }
-        }
-    }
-
-    public static function selectCat()
-    {
-        $categories = Categoria::getCategoriaProductoActivo();
-        if ($categories) {
-            foreach ($categories as $category) {
-                echo '<option value="' . $category['idcatproducto'] . '">'.$category['nombre_categoria'].'</option>';
-            }
-        }
-    }
 }
