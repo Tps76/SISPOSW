@@ -37,14 +37,14 @@ class Proveedor
     }
     public function getProv($id, $nombre)
     {
-        $consulta = "SELECT nombre_proveedor, apellido_proveedor, direccion_proveedor, telefono_proveedor, email_proveedor FROM proveedres WHERE idproveedor = ? OR nombre_proveedor = ?";
+        $consulta = "SELECT idproveedor, razon_social, nombre_proveedor, apellido_proveedor, direccion_proveedor, telefono_proveedor, email_proveedor FROM proveedor WHERE idproveedor = ? OR nombre_proveedor = ?";
         $con = connection::getInstance();
         $db = $con->getBD();
         $stmt = $db->prepare($consulta);
         $stmt->bindParam(1, $id,PDO::PARAM_INT);
         $stmt->bindParam(2, $nombre,PDO::PARAM_STR);
         if ($stmt->execute()) {
-            return $stmt->fetch();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }else{
             return "No se encontro proveedor";
         }

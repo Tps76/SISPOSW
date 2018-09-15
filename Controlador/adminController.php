@@ -284,7 +284,7 @@ class adminController
                 $edit = Proveedor::updateProv($datos, $id);
                 header("location:index.php?action=provOk");
             }else {
-                echo "error1";
+                // echo "error1";
             }
         }
     }
@@ -303,7 +303,7 @@ class adminController
                 }
                 
             }else{
-                echo "error";
+                // echo "error";
             }
         }
     }
@@ -359,6 +359,26 @@ class adminController
                 $id = 0;
             }
             $prov = Proveedor::getProv($id, $nombre);
+            echo "<pre>";
+            print_r($prov);
+            echo "</pre>";
+            
+            if ($prov) {
+                echo "<tr>
+                        <td>$prov[idproveedor]</td>
+                        <td>$prov[razon_social]</td>
+                        <td>$prov[nombre_proveedor] $prov[apellido_proveedor]</td>
+                        <td>$prov[direccion_proveedor]</td>
+                        <td>$prov[email_proveedor]</td>
+                        <td>$prov[telefono_proveedor]</td>
+                        <td>".
+                        '<div class="d-flex justify-content-around">
+                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
+                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
+                            </div>
+                        </td>
+                    </tr>';
+            }
         }
     }
 
