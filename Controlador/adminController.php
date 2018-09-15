@@ -154,6 +154,59 @@ class adminController
                 $prod = producto::insertProducto($datos);
                 $stock= producto::addStock($datos);
                 // echo $prod;
+            }else{
+                echo "error";
+            }
+        }
+    }
+
+    public function addClientes()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "post") {
+            if(isset($_POST['id'])){
+                $datos = array(
+                    "id" => $_POST['id'],
+                    "tipo_id" => "cedula",
+                    "nombre" => $_POST['nombre'],
+                    "apellido" => $_POST['apellido'],
+                    "genero" => $_POST['genero'],
+                    "fecha" => $_POST['date'],
+                    "ciudad" => $_POST['ciudad'],
+                    "dir" => $_POST['dir'],
+                    "tel" => $_POST['contacto'],
+                    "email" => $_POST['email'],
+                    "pass" => $_POST['pass'],
+                    "tipo" => 3 
+                );
+                $identidad = Usuario::regId($datos);
+                $usuario = Usuario::regUsuario($datos);
+                if ($identidad && $usuario) {
+
+                    $id = Usuario::getId($_POST['id']);
+                    $email= $_POST['email'];
+                    $idUsuario = Usuario::getIdUsuario($email);
+                if ($id && $idUsuario) {
+                    
+                        $persona = Usuario::regPersona($datos, $id);
+                    
+                        if ($persona) {
+                        $idPersona = Usuario::getIdPersona($id);
+                        
+                            
+                            if ($idPersona) {
+                                $cliente = Usuario::regCliente($idUsuario, $idPersona);
+                            }else{
+                                echo("error");
+                            }
+                        }else{
+                            echo "error";
+                        }
+                    }else{
+                        echo "error";
+                    }
+                }else{
+                    echo "erro";
+                }
             }
         }
     }
