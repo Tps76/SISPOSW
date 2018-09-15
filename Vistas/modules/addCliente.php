@@ -45,22 +45,32 @@
                 <div class="row mt-3">
                     <div class="col input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="material-icons">local_atm</i></span>
+                            <span class="input-group-text"><i class="material-icons">date_range</i></span>
                         </div>
-                        <select id="m_pago" class="form-control">
-                            <option selected>Método de Pago</option>
-                            <option>Visa</option>
-                            <option>MasterCard</option>
-                            <option>PayPal</option>
-                            <option>Davivienda</option>
-                            <option>Colpatria</option>
-                        </select>
+                        <input type="date" name="date" class="form-control" max="3000-12-31" min="1000-01-01" />
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">directions</i></span>
                         </div>
                         <input class="form-control" type="text" placeholder="Dirección">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <select class=form-control name="pais" id="pais">
+                            <?php adminController::selectPais(); ?>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class=form-control name="depto" id="depto">
+                            <option value="">Seleccione primero el país</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class=form-control name="ciudad" id="ciudad">
+                            <option value="">Seleccione primero el departamento</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row mt-4">

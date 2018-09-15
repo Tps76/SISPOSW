@@ -10,12 +10,12 @@ $(document).ready(function () {
                 success: function (response) {
                     // console.log(response);
                     $("#depto").html(response);
-                    $("#ciudad").html('<option value="">Seleccione Departamento primero</option>');
+                    $("#ciudad").html('<option value="">Seleccione primero Departamento </option>');
                 }
             });
         }else{
             $("#depto").html('<option value="">Seleccione País primero</option>');
-            $("#ciudad").html('<option value="">Seleccione Departamento primero</option>');
+            $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
         }
     });
     $("#depto").on("change", function () {
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 }
             });
         }else{
-            $("#ciudad").html('<option value="">Seleccione Departamento primero</option>');
+            $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
         }
     });
 });
