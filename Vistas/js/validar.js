@@ -8,12 +8,10 @@ function validar(){
     var cel = $('#cel').val();
     var dir = $('#dir').val();
     var pass = $('#pass').val();
-    var tipo_usuario = $('#ad').val();
     var ciudad = $('#ciudad').val();
     var genero = $('#genero').val();
     var tipo_documento = $('#identificacion').val();
     var nacimiento = $('#nacimiento').val();
-    console.log(nacimiento);
     var id = $('#id').val();
     var dato_id = "identidad";
     var indice = "Start";
@@ -52,7 +50,7 @@ function validar(){
     }
     validar_final();
     function validar_final(){
-        if (id_valido!="" && nacimiento!="" &&tipo_documento!="tipo de documento" &&genero!="Seleccione su genero" && ciudad!="0" &&tipo_usuario!="Escoja Usuario" && email_valido!="" && name!="" && lastname!="" && tel!="" && cel!="" && dir!="" && pass!="") {
+        if (id_valido!="" && nacimiento!="" &&tipo_documento!="tipo de documento" &&genero!="Seleccione su genero" && ciudad!="0" && email_valido!="" && name!="" && lastname!="" && tel!="" && cel!="" && dir!="" && pass!="") {
             $("#boton_enviar_registro").removeAttr('disabled');
         }else{
             $("#boton_enviar_registro").attr('disabled', 'disabled');
