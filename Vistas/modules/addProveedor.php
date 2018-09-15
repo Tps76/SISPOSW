@@ -1,4 +1,4 @@
-<!-- NOTA: hay que añadir los names en los inputs -->
+<?php adminController::addProveedor();  ?>
 <div class="container col-8 mt-4 mx-0">
    <div class="card">
        <div class="card-header">
@@ -11,13 +11,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Indentificación">
+                        <input class="form-control" name=idProv type="text" placeholder="Indentificación">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Razón Social">
+                        <input class="form-control" name=RSProv type="text" placeholder="Razón Social">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -25,13 +25,30 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">person</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Nombres">
+                        <input class="form-control" name=namesProv type="text" placeholder="Nombres">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">person</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Apellidos">
+                        <input class="form-control" name=lastNameProv type="text" placeholder="Apellidos">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <select id="pais" name="pais" class="form-control">
+                            <?php adminController::selectPais(); ?>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="depto" name="depto" class="form-control">
+                            <option value="">Seleccione País primero</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="ciudad" name="ciudad" class="form-control">
+                            <option value="">Seleccione Departamento primero</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -39,7 +56,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">drafts</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Correo Electrónico">
+                        <input class="form-control" name=emailProv type="text" placeholder="Correo Electrónico">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -47,13 +64,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">phone_iphone</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Contacto">
+                        <input class="form-control" name=contactProv type="text" placeholder="Contacto">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">directions</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Dirección">
+                        <input class="form-control" name=dirProv type="text" placeholder="Dirección">
                     </div>
                 </div>
                 <div class="row mt-4">

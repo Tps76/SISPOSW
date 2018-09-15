@@ -6,7 +6,7 @@ class Categoria
         $sql = "SELECT idcatproducto,nombre_categoria FROM categoria_producto WHERE estado_categoria = true";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array(true));
+            $resultado->execute();
             $tabla = $resultado->fetchAll(PDO::FETCH_ASSOC);
             return $tabla;
         }catch(PDOException $e){

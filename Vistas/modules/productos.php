@@ -15,17 +15,15 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-stried table-bordered">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
                         <th scope="col">Categoría</th>
                         <th scope="col">Proveedor</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Precio c/u</th>
-                        <th scope="col">Agregado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -33,22 +31,8 @@
                     <!-- Aquí es donde deben meter código php
                         deben de repetir desde la tr y    
                         en las td llenar los campos -->
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="d-flex justify-content-around">
-                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
-                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
-                            </div>
-                        </td>
-                    </tr>
+                    <?php adminController::getAllProd();  ?>    
+                    
                 </tbody>
             </table>
         </div>
