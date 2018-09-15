@@ -33,6 +33,7 @@ $(function () {
         let val = $(this).val();
         console.log(val);
         $("#prueba").html('<input type=hidden value="'+val+'" name=id >');
+        $("#edit").html('<input type=hidden value="'+val+'" name=edit >');
         $("#delete").html('<input type=hidden value="'+val+'" name=delete >');
         
     });

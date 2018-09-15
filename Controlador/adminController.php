@@ -100,10 +100,11 @@ class adminController
 
     public static function addCategories()
     {
-        if ($_SERVER['REQUEST_METHOD'] == "post") {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['addCat'])) {
                 $name = $_POST['addCat'];
                 $add = Categoria::insertCategoriaProducto($name);
+                header("location:index.php?action=catOk");
                 if (!$add) {
                     echo "error";
                 }
@@ -126,6 +127,7 @@ class adminController
                                "RS" => $_POST['RSProv']
                         );
                 $prov = Proveedor::regProv($datos);
+                // header("location:index.php?");
             }
         }
     }
@@ -264,11 +266,25 @@ class adminController
         }
     }
 
-    public function modifyProv()
+    public static function modifyProv()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['edit'])) {
-                
+                $id = $_POST['edit'];
+                $datos = array(
+                    "id" => $_POST['idProvE'],
+                    "ciudad" => $_POST['ciudadE'],
+                    "RS" => $_POST['RSProvE'],
+                    "nombre" => $_POST['namesProvE'],
+                    "apellido" => $_POST['lastNameProvE'],
+                    "dir" => $_POST['dirProvE'],
+                    "tel" => $_POST['contactProvE'],
+                    "email" => $_POST['emailProvE']
+                );
+                $edit = Proveedor::updateProv($datos, $id);
+                header("location:index.php?action=provOk");
+            }else {
+                echo "error1";
             }
         }
     }
@@ -277,8 +293,15 @@ class adminController
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['delete'])) {
+                
                 $id = $_POST['delete'];
                 $delete = Proveedor::desactivarProveedor($id);
+                header("location:index.php?action=provOk");
+                
+                if (!$delete) {
+                    echo "error";
+                }
+                
             }else{
                 echo "error";
             }

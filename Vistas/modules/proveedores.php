@@ -1,4 +1,4 @@
-<?php $prov=new adminController(); ?>
+<?php ob_start(); ?>
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
@@ -52,6 +52,7 @@
 <!--========================
         Modificar Proveedor
     =======================-->
+<?php adminController::modifyProv();?>
 <div class="modal fade" id="editar">
     <div class="modal-dialog form-tam">
         <div class="modal-content">
@@ -63,7 +64,7 @@
             </div>
             <div class="modal-body">
                 <form method="post">
-                <div class="d-none" id=prueba >
+                <div class="d-none" id="edit">
                 
                 </div>
                 <div class="row">
@@ -71,13 +72,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Indentificación">
+                        <input class="form-control" name=idProvE type="text" placeholder="Indentificación">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Razón Social">
+                        <input class="form-control" name=RSProvE type="text" placeholder="Razón Social">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -85,13 +86,30 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">person</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Nombres">
+                        <input class="form-control" name=namesProvE type="text" placeholder="Nombres">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">person</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Apellidos">
+                        <input class="form-control" name=lastNameProvE type="text" placeholder="Apellidos">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <select id="pais" name="paisE" class="form-control">
+                            <?php adminController::selectPais(); ?>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="depto" name="deptoE" class="form-control">
+                            <option value="">Seleccione País primero</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="ciudad" name="ciudadE" class="form-control">
+                            <option value="">Seleccione Departamento primero</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -99,7 +117,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">drafts</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Correo Electrónico">
+                        <input class="form-control" name=emailProvE type="text" placeholder="Correo Electrónico">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -107,16 +125,16 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">phone_iphone</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Contacto">
+                        <input class="form-control" name=contactProvE type="text" placeholder="Contacto">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">directions</i></span>
                         </div>
-                        <input class="form-control" type="text" placeholder="Dirección">
+                        <input class="form-control" name=dirProvE type="text" placeholder="Dirección">
                     </div>
                 </div>
-            </div>
+            </div>    
             <div class="modal-footer">
                 <div class="form-group">
                     <button class="btn btn-success" type="submit">Guardar</button>
@@ -145,6 +163,7 @@
             </div>
             <div class="modal-footer">
                 <form method="post">
+                    <input type="hidden" name=cantidad value=1>
                     <div class="d-none" id="delete"></div>
                     <button class="btn btn-warning" type="submit">Eliminar</button>
                 </form>
@@ -153,3 +172,4 @@
         </div>
     </div>
 </div>
+<?php ob_end_flush(); ?>
