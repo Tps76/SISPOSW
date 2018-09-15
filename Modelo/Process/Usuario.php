@@ -149,6 +149,35 @@ class Usuario
         }
         $stmt->close();
     }
+    
+    public function getClientes()
+    {
+        $consulta = "SELECT * FROM clientev WHERE estado = true";
+        $con = Connection::getInstance();
+        $db = $con->getBD();
+        $stmt = $db->prepare($consulta);
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return "error";
+        }
+        $stmt->close();
+    }
+
+    public function getEmpleados()
+    {
+        $consulta = "SELECT * FROM trabajadorv WHERE estado = true";
+        $con = Connection::getInstance();
+        $db = $con->getBD();
+        $stmt = $db->prepare($consulta);
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return "error";
+        }
+        $stmt->close();
+    }
+
     /* =========== LOGIN USER ============ */
     public function loginUser($datos)
     {

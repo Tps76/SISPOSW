@@ -38,7 +38,7 @@
         <?php include "Vistas/modules/nav.php"; ?>
         <main class="col-md-10">
             <?php 
-            adminController::RutaAdminController();
+                adminController::RutaAdminController();
             ?>
         </main>
     </section>

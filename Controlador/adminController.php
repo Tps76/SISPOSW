@@ -38,8 +38,8 @@ class adminController
                         <th>' . $categoria['nombre_categoria'] . '</th>
                         <th>
                             <div class="d-flex justify-content-between">
-                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
-                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
+                                <button class="click btn btn-outline-primary"value="'.$categoria['idcatproducto'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'.$categoria['idcatproducto'].'"data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </th>
                     </tr>';
@@ -49,7 +49,7 @@ class adminController
         }
     }
 
-    public function getProvAll()
+    public static function getProvAll()
     {
         $provs = Proveedor::getAllProv();
         $i = 1;
@@ -77,8 +77,6 @@ class adminController
     {
         $prods = producto::viewAllProductos();
         if ($prods) {
-            // echo "<pre>";
-            // print_r($prods);
             foreach($prods as $prod){
                 echo '<tr>
                         <td>'.$prod['idproducto'].'</td>
@@ -89,8 +87,61 @@ class adminController
                         <td>'.$prod['venta_producto'].'</td>
                         <td>
                             <div class="d-flex justify-content-around">
-                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
-                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
+                                <button class="click btn btn-outline-primary" value="'. $prod['idproducto'] .'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'. $prod['idproducto'] .'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
+                            </div>
+                        </td>
+                    </tr>';
+            }
+        }
+    }
+
+    public static function getAllCli()
+    {
+        $clientes = Usuario::getClientes();
+        // echo "<pre>";
+        // print_r($clientes);
+        // echo "</pre>";
+        if ($clientes) {
+            foreach ($clientes as $cliente) {
+                echo '<tr>
+                        <td>' . $cliente['numero_identidad'] . '</td>
+                        <td>' . $cliente['nombre_persona'] . '</td>
+                        <td>' . $cliente['apellido_persona'] . '</td>
+                        <td>' . $cliente['direccion'] . '</td>
+                        <td>' . $cliente['email_usuario'] . '</td>
+                        <td>' . $cliente['telefono'] . '</td>
+                        <td>
+                            <div class="d-flex justify-content-around">
+                                <button class="click btn btn-outline-primary" value="' . $cliente['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i><input type="hidden" class="person" value="' . $cliente['idpersona'] . '"> </button>
+                                <button class="click btn btn-outline-danger" value="' . $cliente['email_usuario'] . '" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
+                            </div>
+                        </td>
+                    </tr>';
+            }
+        }
+    }
+
+    public static function getAllEmpleados()
+    {
+        $empleados = Usuario::getEmpleados();
+        // echo "<pre>";
+        // print_r($empleados);
+        // echo "</pre>";
+        if ($empleados) {
+            foreach ($empleados as $empleado) {
+                echo '<tr>
+                        <td>' . $empleado['numero_identidad'] . '</td>
+                        <td>' . $empleado['nombre_persona'] . '</td>
+                        <td>' . $empleado['apellido_persona'] . '</td>
+                        <td>' . $empleado['email_usuario'] . '</td>
+                        <td>' . $empleado['telefono'] . '</td>
+                        <td>' . $empleado['nombre_catusuario'] . '</td>
+                        <td>
+                            <div class="d-flex justify-content-around">
+                                <input type="hidden" class="person" value="' . $empleado['idpersona'] . '">
+                                <button class="click btn btn-outline-primary" value="' . $empleado['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="' . $empleado['email_usuario'] . '" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
                     </tr>';
@@ -127,7 +178,7 @@ class adminController
                                "RS" => $_POST['RSProv']
                         );
                 $prov = Proveedor::regProv($datos);
-                // header("location:index.php?");
+                header("location:index.php?action=proveedores");
             }
         }
     }
@@ -156,7 +207,9 @@ class adminController
                 );
                 $prod = producto::insertProducto($datos);
                 $stock= producto::addStock($datos);
-                // echo $prod;
+                if ($prod && $stcok) {
+                    header("location:index.php?action=productos");
+                }
             }else{
                 echo "error";
             }
@@ -165,7 +218,7 @@ class adminController
 
     public function addClientes()
     {
-        if ($_SERVER['REQUEST_METHOD'] == "post") {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if(isset($_POST['id'])){
                 $datos = array(
                     "id" => $_POST['id'],
@@ -189,26 +242,19 @@ class adminController
                     $email= $_POST['email'];
                     $idUsuario = Usuario::getIdUsuario($email);
                 if ($id && $idUsuario) {
-                    
                         $persona = Usuario::regPersona($datos, $id);
                     
                         if ($persona) {
-                        $idPersona = Usuario::getIdPersona($id);
+                            $idPersona = Usuario::getIdPersona($id);
                         
-                            
                             if ($idPersona) {
                                 $cliente = Usuario::regCliente($idUsuario, $idPersona);
-                            }else{
-                                echo("error");
+                                if ($cliente) {
+                                    header("location:index.php?action=clientes");
+                                }
                             }
-                        }else{
-                            echo "error";
                         }
-                    }else{
-                        echo "error";
                     }
-                }else{
-                    echo "erro";
                 }
             }
         }
@@ -409,6 +455,10 @@ class adminController
             if ($consultas["idusuario"] != "") {
                 $_SESSION["nueva"] = $consultas;
                 $consultas = "Bienvenido " . $consultas["idusuario"];
+                header("Location: ../Vistas/index.php?msg=$consultas");
+            }else {
+            $consultas = "Datos incorrectos, sesion no iniciada";
+            header("Location: ../Vistas/index.php?msg=$consultas");
             }
         }
     }
@@ -439,17 +489,121 @@ class adminController
                         <td>$prov[telefono_proveedor]</td>
                         <td>".
                         '<div class="d-flex justify-content-around">
-                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
-                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
+                                <button class="click btn btn-outline-primary" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
                     </tr>';
-
-                header("Location: ../Vistas/index.php?msg=$consultas");
-            } else {
-                $consultas = "Datos incorrectos, sesion no iniciada";
-                header("Location: ../Vistas/index.php?msg=$consultas");
             }
+                
+        }
+    }
+
+    public static function searchCat()
+    {
+        if (isset($_POST['cat'])) {
+            $search = $_POST['cat'];
+            if (is_numeric($search)) {
+                $id = $search;
+                $nombre = "";
+            }else{
+                $nombre = $search;
+                $id = 0;
+            }
+            $cat = Proveedor::getProv($id, $nombre);
+            echo "<pre>";
+            print_r($cat);
+            echo "</pre>";
+            
+            if ($cat) {
+                echo "<tr>
+                        <td>$cat[idproveedor]</td>
+                        <td>$cat[razon_social]</td>
+                        <td>$cat[nombre_proveedor] $cat[apellido_proveedor]</td>
+                        <td>$cat[direccion_proveedor]</td>
+                        <td>$cat[email_proveedor]</td>
+                        <td>$cat[telefono_proveedor]</td>
+                        <td>".
+                        '<div class="d-flex justify-content-around">
+                                <button class="click btn btn-outline-primary" value="'.$cat['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'.$cat['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
+                            </div>
+                        </td>
+                    </tr>';
+            }
+                
+        }
+    }
+
+    public static function searchProd()
+    {
+        if (isset($_POST['prod'])) {
+            $search = $_POST['prod'];
+            if (is_numeric($search)) {
+                $id = $search;
+                $nombre = "";
+            }else{
+                $nombre = $search;
+                $id = 0;
+            }
+            $prod = producto::getProd($id, $nombre);
+            echo "<pre>";
+            print_r($prod);
+            echo "</pre>";
+            
+            if ($prod) {
+                echo "<tr>
+                        <td>$prod[idproveedor]</td>
+                        <td>$prod[razon_social]</td>
+                        <td>$prod[nombre_proveedor] $prod[apellido_proveedor]</td>
+                        <td>$prod[direccion_proveedor]</td>
+                        <td>$prod[email_proveedor]</td>
+                        <td>$prod[telefono_proveedor]</td>
+                        <td>".
+                        '<div class="d-flex justify-content-around">
+                                <button class="click btn btn-outline-primary" value="'.$prod['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'.$prod['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
+                            </div>
+                        </td>
+                    </tr>';
+            }
+                
+        }
+    }
+    
+    public static function searchEmp()
+    {
+        if (isset($_POST['emp'])) {
+            $search = $_POST['emp'];
+            if (is_numeric($search)) {
+                $id = $search;
+                $nombre = "";
+            }else{
+                $nombre = $search;
+                $id = 0;
+            }
+            $emp = Usuario::getEmp($id, $nombre);
+            echo "<pre>";
+            print_r($emp);
+            echo "</pre>";
+            
+            if ($emp) {
+                echo "<tr>
+                        <td>$emp[idproveedor]</td>
+                        <td>$emp[razon_social]</td>
+                        <td>$emp[nombre_proveedor] $emp[apellido_proveedor]</td>
+                        <td>$emp[direccion_proveedor]</td>
+                        <td>$emp[email_proveedor]</td>
+                        <td>$emp[telefono_proveedor]</td>
+                        <td>".
+                        '<div class="d-flex justify-content-around">
+                                <button class="click btn btn-outline-primary" value="'.$emp['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'.$emp['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
+                            </div>
+                        </td>
+                    </tr>';
+            }
+                
         }
     }
 

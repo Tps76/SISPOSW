@@ -163,7 +163,6 @@
             </div>
             <div class="modal-footer">
                 <form method="post">
-                    <input type="hidden" name=cantidad value=1>
                     <div class="d-none" id="delete"></div>
                     <button class="btn btn-warning" type="submit">Eliminar</button>
                 </form>

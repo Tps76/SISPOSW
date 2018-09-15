@@ -191,6 +191,24 @@ CREATE TABLE `cliente` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `clientev`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `clientev` (
+`idcliente` int(11)
+,`numero_identidad` int(11)
+,`nombre_persona` varchar(100)
+,`apellido_persona` varchar(100)
+,`genero` char(1)
+,`fecha_nacimiento` date
+,`direccion` varchar(50)
+,`nombre_ciudad` varchar(50)
+,`telefono` varchar(10)
+,`email_usuario` varchar(50)
+);
+
+-- --------------------------------------------------------
+--
 -- Estructura de tabla para la tabla `departamento`
 --
 
@@ -277,11 +295,18 @@ CREATE TABLE `factura` (
 --
 CREATE TABLE `facturav` (
 `id_fac` int(11)
-,`fk_trabaj` int(11)
-,`fk_tipoPago` int(11)
-,`fk_resFac` int(11)
-,`fk_cliente` int(11)
-,`fk_petProducto` int(11)
+,`codigo_caja` int(11)
+,`numero_caja` int(11)
+,`ubicacion` varchar(60)
+,`tipo` varchar(50)
+,`codigo_resolucion` int(11)
+,`idcliente` int(11)
+,`numero_identidad` int(11)
+,`nombre_persona` varchar(100)
+,`apellido_persona` varchar(100)
+,`idpedido` int(11)
+,`fecha_pedido` datetime
+,`total_pedido` double
 );
 
 -- --------------------------------------------------------
@@ -475,6 +500,27 @@ CREATE TABLE `trabajador` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `trabajadorv`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `trabajadorv` (
+`idtrabajador` int(11)
+,`nit_empresa` int(11)
+,`nombre_empresa` varchar(50)
+,`numero_identidad` int(11)
+,`nombre_persona` varchar(100)
+,`apellido_persona` varchar(100)
+,`genero` char(1)
+,`fecha_nacimiento` date
+,`telefono` varchar(10)
+,`nombre_ciudad` varchar(50)
+,`email_usuario` varchar(50)
+,`nombre_catusuario` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -496,11 +542,30 @@ INSERT INTO `usuario` (`idusuario`, `email_usuario`, `password_usuario`, `tipo_u
 -- --------------------------------------------------------
 
 --
+-- Estructura para la vista `clientev`
+--
+DROP TABLE IF EXISTS `clientev`;
+
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `clientev`  AS  select `c`.`idcliente` AS `idcliente`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`direccion` AS `direccion`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`p`.`telefono` AS `telefono`,`u`.`email_usuario` AS `email_usuario` from ((((`cliente` `c` join `persona` `p` on(`c`.`idpersona` = `p`.`idpersona`)) join `ciudad` `ci` on(`p`.`idciudad` = `ci`.`idciudad`)) join `identidad` `id` on(`p`.`ididentidad` = `id`.`ididentidad`)) join `usuario` `u` on(`c`.`idusuario` = `u`.`idusuario`)) ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura para la vista `facturav`
 --
 DROP TABLE IF EXISTS `facturav`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_oscar`@`%` SQL SECURITY DEFINER VIEW `facturav`  AS  select `f`.`id_fac` AS `id_fac`,`f`.`fk_trabaj` AS `fk_trabaj`,`f`.`fk_tipoPago` AS `fk_tipoPago`,`f`.`fk_resFac` AS `fk_resFac`,`f`.`fk_cliente` AS `fk_cliente`,`f`.`fk_petProducto` AS `fk_petProducto` from `factura` `f` ;
+CREATE ALGORITHM=UNDEFINED  SQL SECURITY DEFINER VIEW `facturav`  AS  select `f`.`id_fac` AS `id_fac`,`f`.`fk_trabaj` AS `fk_trabaj`,`f`.`fk_tipoPago` AS `fk_tipoPago`,`f`.`fk_resFac` AS `fk_resFac`,`f`.`fk_cliente` AS `fk_cliente`,`f`.`fk_petProducto` AS `fk_petProducto` from `factura` `f` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `trabajadorv`
+--
+DROP TABLE IF EXISTS `trabajadorv`;
+
+
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `trabajadorv`  AS  select `t`.`idtrabajador` AS `idtrabajador`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`telefono` AS `telefono`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`u`.`email_usuario` AS `email_usuario`,`ca`.`nombre_catusuario` AS `nombre_catusuario` from (((((`trabajador` `t` join `persona` `p` on(`t`.`idpersona` = `p`.`idpersona`)) join `identidad` `id` on(`p`.`ididentidad` = `id`.`ididentidad`)) join `ciudad` `ci` on(`p`.`idciudad` = `ci`.`idciudad`)) join `usuario` `u` on(`t`.`idusuario` = `u`.`idusuario`)) join `categoria_usuario` `ca` on(`t`.`idcargo` = `ca`.`idcatusuario`)) ;
 
 --
 -- Índices para tablas volcadas

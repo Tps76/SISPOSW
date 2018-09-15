@@ -31,9 +31,11 @@ $(function(){
     // });
     $(".click").click(function () { 
         let val = $(this).val();
-        console.log(val);
-        $("#prueba").html('<input type=hidden value="'+val+'" name=id >');
-        $("#edit").html('<input type=hidden value="'+val+'" name=edit >');
+        let person = $(".person").val();
+        console.log("valor boton = "+val);
+        $("#prueba").html('<input type=hidden value="'+val+'" name="id" >');
+        $("#edit").html('<input type=hidden value="'+val+'" name="edit" >');
+        $("#person").html('<input type=hidden value="'+person+'" name="person" >');
         $("#delete").html('<input type=hidden value="'+val+'" name=delete >');
         
     });
