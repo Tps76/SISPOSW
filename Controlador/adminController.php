@@ -52,6 +52,7 @@ class adminController
     public function getProvAll()
     {
         $provs = Proveedor::getAllProv();
+        $i = 1;
         if ($provs != "error") {
             foreach ($provs as $prov) {
                 echo '<tr>
@@ -63,12 +64,12 @@ class adminController
                         <th>' . $prov['telefono_proveedor'] . '</th>
                         <th>
                             <div class="d-flex justify-content-between">
-                                <a class="btn btn-outline-primary" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </a>
-                                <a class="btn btn-outline-danger" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </a>
+                                <button class="click btn btn-outline-primary" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-danger" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </th>
-                    </tr>';
-            } 
+                    </tr>';    
+            }
         }
     }
 
@@ -207,6 +208,79 @@ class adminController
                 }else{
                     echo "erro";
                 }
+            }
+        }
+    }
+        
+    public static function addEmpleado()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "post") {
+            if (isset($_POST['id'])) {
+                $datos = array(
+                    "id" => $_POST['id'],
+                    "tipo_id" => "cedula",
+                    "nombre" => $_POST['nombre'],
+                    "apellido" => $_POST['apellido'],
+                    "genero" => $_POST['genero'],
+                    "fecha" => $_POST['date'],
+                    "ciudad" => $_POST['ciudad'],
+                    "dir" => $_POST['dir'],
+                    "tel" => $_POST['contacto'],
+                    "email" => $_POST['email'],
+                    "pass" => $_POST['pass'],
+                    "tipo" => $_POST['cargo']
+                );
+                $identidad = Usuario::regId($datos);
+                $usuario = Usuario::regUsuario($datos);
+                if ($identidad && $usuario) {
+
+                    $id = Usuario::getId($_POST['id']);
+                    $email = $_POST['email'];
+                    $idUsuario = Usuario::getIdUsuario($email);
+                    if ($id && $idUsuario) {
+
+                        $persona = Usuario::regPersona($datos, $id);
+
+                        if ($persona) {
+                            $idPersona = Usuario::getIdPersona($id);
+
+
+                            if ($idPersona) {
+                                $cargo = $_POST['cargo']; 
+                                $empleado = Usuario::regEmpleado($idUsuario, $idPersona, $cargo);
+                            } else {
+                                echo ("error");
+                            }
+                        } else {
+                            echo "error";
+                        }
+                    } else {
+                        echo "error";
+                    }
+                } else {
+                    echo "erro";
+                }
+            }
+        }
+    }
+
+    public function modifyProv()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['edit'])) {
+                
+            }
+        }
+    }
+
+    public static function deleteProv()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['delete'])) {
+                $id = $_POST['delete'];
+                $delete = Proveedor::desactivarProveedor($id);
+            }else{
+                echo "error";
             }
         }
     }

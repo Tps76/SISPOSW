@@ -85,6 +85,26 @@ class Usuario
         }
         $stmt->close();
     }
+    public function regEmpleado($idUsuario, $idPersona, $cargo)
+    {
+        $consulta = "INSERT INTO trabajador(idpersona, idusuario, idcargo) VALUES (?,?,?)";
+        // Establece la conexion.
+        $con = Connection::getInstance();
+        // Ingresa base de datos.
+        $db = $con->getBD();
+        // PDOStatement.
+        $stmt = $db->prepare($consulta);
+        // Parseo y asignación de datos.
+        $stmt->bindParam(1, $idPersona['idpersona'], PDO::PARAM_INT);
+        $stmt->bindParam(2, $idUsuario['idusuario'], PDO::PARAM_INT);
+        $stmt->bindParam(3, $cargo, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return "success";
+        } else {
+            return "error";
+        }
+        $stmt->close();
+    }
     
     /* =========== SELECCIONAR ============ */
     public function getId($numero)

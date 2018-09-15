@@ -26,7 +26,15 @@ $(function () {
             }
         });
     });
-    $('#regModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })
+    // $('#regModal').on('shown.bs.modal', function () {
+    //     $('#myInput').trigger('focus')
+    // });
+    $(".click").click(function () { 
+        let val = $(this).val();
+        console.log(val);
+        $("#prueba").html('<input type=hidden value="'+val+'" name=id >');
+        $("#delete").html('<input type=hidden value="'+val+'" name=delete >');
+        
+    });
+    
 });

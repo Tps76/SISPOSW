@@ -75,4 +75,8 @@ class Proveedor
             return false;
         }
     }
+    public function updateProv($datos)
+    {
+        # code...
+    }
 }

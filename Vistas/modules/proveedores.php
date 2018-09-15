@@ -37,6 +37,7 @@
                     <?php 
                     if(!isset($_POST['prov'])){
                         adminController::getProvAll();  
+    
                     }else{
                         adminController::searchProv();
                     }
@@ -62,6 +63,9 @@
             </div>
             <div class="modal-body">
                 <form method="post">
+                <div class="d-none" id=prueba >
+                
+                </div>
                 <div class="row">
                     <div class="col input-group">
                         <div class="input-group-prepend">
@@ -126,6 +130,7 @@
 <!--========================
         Eliminar Proveedor
     =======================-->
+<?php adminController::deleteProv();?>
 <div class="modal fade" id="eliminar">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -136,11 +141,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><?php ?></p>
+                <p>Esta seguro de eliminar el proveedor?</p>
             </div>
             <div class="modal-footer">
                 <form method="post">
-                    <button class="btn btn-warning" value="<?php ?>" type="submit">Eliminar</button>
+                    <div class="d-none" id="delete"></div>
+                    <button class="btn btn-warning" type="submit">Eliminar</button>
                 </form>
                 <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </div>
