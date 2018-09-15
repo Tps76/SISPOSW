@@ -43,7 +43,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../Modelo/process/Usuario.php/action=regId" method="post" class="form-group">
+                    <form  method="post" class="form-group">
                         <div class="row">
                             <div class="col">
                                 <label for="">Seleccion de tipo de documento: </label>
@@ -78,7 +78,7 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <select name="pais" class="custom-select" id="pais">
-                                    <option selected>Seleccione su país</option>
+                                    <option selected>Seleccione su país 1</option>
                                 </select>
                             </div>
                             <div class="col">
