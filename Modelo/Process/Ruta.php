@@ -7,14 +7,24 @@ class Ruta
         // $enlace = $url;
         if ($enlace == "panel" || $enlace == "productos" || $enlace == "addProducto" || 
             $enlace == "empleados" || $enlace == "addEmpleado" || $enlace == "clientes" || 
-            $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor" ||
-            $enlace == "categorias" || $enlace == "reportes") {
+            $enlace == "addCliente" || $enlace == "proveedores" || $enlace == "addProveedor"||
+            $enlace == "categorias") {
 
             $module = "Vistas/modules/". $enlace .".php";
 
-        }else if("index"){
+        } elseif ($enlace == "index"){
             $module = "Vistas/modules/panel.php";
-        }else{
+        } elseif ($enlace == "catOk"){
+            $module = "Vistas/modules/categorias.php";
+        } elseif ($enlace == "provOk"){
+            $module = "Vistas/modules/proveedores.php";
+        } elseif ($enlace == "prodOk") {
+            $module = "Vistas/modules/productos.php";
+        } elseif ($enlace == "cliOk") {
+            $module = "Vistas/modules/clientes.php";
+        } elseif ($enlace == "empOk") {
+            $module = "Vistas/modules/empleados .php";
+        } else{
             $module = "Vistas/modules/panel.php";
         }
         return $module;
