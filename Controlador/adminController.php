@@ -243,7 +243,7 @@ class adminController
                     $id = Usuario::getId($_POST['id']);
                     $email= $_POST['email'];
                     $idUsuario = Usuario::getIdUsuario($email);
-                if ($id && $idUsuario) {
+                    if ($id && $idUsuario) {
                         $persona = Usuario::regPersona($datos, $id);
                     
                         if ($persona) {
