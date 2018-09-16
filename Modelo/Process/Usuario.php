@@ -180,7 +180,7 @@ class Usuario
 
     public function getEmpleado($id, $email)
     {
-        $consulta = "SELECT * FROM trabajadorv WHERE numero_identidad LIKE ? OR email_usuario LIKE ?";
+        $consulta = "SELECT * FROM trabajadorv WHERE numero_identidad LIKE ? OR email_usuario LIKE ? AND estado = true";
         $con = Connection::getInstance();
         $db = $con->getBD();
         $stmt = $db->prepare($consulta);
@@ -196,7 +196,7 @@ class Usuario
 
     public function getCliente($id, $email)
     {
-        $consulta = "SELECT * FROM clientev WHERE numero_identidad LIKE ? OR email_usuario LIKE ?";
+        $consulta = "SELECT * FROM clientev WHERE numero_identidad LIKE ? OR email_usuario LIKE ? AND estado = true";
         $con = Connection::getInstance();
         $db = $con->getBD();
         $stmt = $db->prepare($consulta);

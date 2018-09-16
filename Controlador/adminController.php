@@ -372,15 +372,11 @@ class adminController
                     "img" => $share
                 );
                 // print_r($datos);
-                // echo $id;
                 $cambioProd = producto::updateProducto($datos, $id);
-                if ($cambioProd) {
-                    $cambioStock = producto::updateStock($datos, $stock);
-                    echo "<pre>";
-                    echo $cambioStock;
-                    echo "</pre>";
+                $cambioStock = producto::updateStock($datos, $stock);
+                if ($cambioProd && $cambioStock) {
+                    header("location:index.php?action=prodOk");
                 }
-                echo $cambioProd;
             }
         } 
     }

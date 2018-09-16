@@ -28,7 +28,7 @@ class producto{
 
     public function getProd($id)
     {
-        $sql = "SELECT producto.idproducto, categoria_producto.nombre_categoria, proveedor.razon_social, producto.nombre_producto, producto.venta_producto, stock.cantidad_stock FROM (((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor) INNER JOIN categoria_producto ON producto.idcatproducto = categoria_producto.idcatproducto) WHERE producto.idproducto = ?";
+        $sql = "SELECT producto.idproducto, categoria_producto.nombre_categoria, proveedor.razon_social, producto.nombre_producto, producto.venta_producto, stock.cantidad_stock FROM (((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor) INNER JOIN categoria_producto ON producto.idcatproducto = categoria_producto.idcatproducto) WHERE producto.idproducto = ? AND producto.estado_producto = true";
         try {
             $resultado = connection::getInstance()->getBD()->prepare($sql);
             $resultado->execute(array($id));
@@ -51,13 +51,14 @@ class producto{
     }
 
     public static function updateProducto($datos, $id){
-        $sql = "UPDATE producto SET idproducto = ?, idcatproducto = ?, idproveedor = ?,nombre_producto = ?,venta_producto = ?,imagen_producto = ?,compra_producto = ? WHERE idproducto = ?";
+        $sql = "UPDATE producto SET idproducto = ?, idcatproducto = ?, idproveedor = ?, nombre_producto = ?, venta_producto = ?, imagen_producto = ?, compra_producto = ? WHERE idproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($datos['code'], $datos['cat'], $datos["prov"],$datos["name"],$datos["priceSale"],$datos["img"],$datos["priceBuy"],$id));
+            $resultado->execute(array($datos['code'], $datos['cat'], $datos["prov"], $datos["name"],$datos["priceSale"],$datos["img"], $datos["priceBuy"], $id)
+            );
             return true;
         }catch(PDOException $e){
-            return false;
+            return $e;
         }
     }
 
@@ -97,10 +98,10 @@ class producto{
 
     public function updateStock($datos, $id)
     {
-        $sql = "UPDATE stock SET idproveedor = ?, idproducto = ?, cantidad_stock = ? WHERE idstock = ?";
+        $sql = "UPDATE stock s JOIN producto p ON s.idproducto = p.idproducto AND s.idproveedor = p.idproveedor SET s.idproveedor = p.idproveedor, s.idproducto = p.idproducto, s.cantidad_stock = ? WHERE s.idstock = ?";
         try {
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($datos['prov'], $datos["code"], $datos["cant"], $id));
+            $resultado->execute(array($datos["cant"], $id));
             return true;
         } catch (PDOException $e) {
             return $e;
