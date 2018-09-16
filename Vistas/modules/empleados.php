@@ -1,3 +1,5 @@
+
+<?php adminController::deleteEmp(); ?> 
 <div class="container mt-4 mx-0">
     <div class="card">
         <div class="card-header">
@@ -165,7 +167,7 @@
 </div>    
 <!--========================
         Eliminar Empleado
-    =======================-->
+    =======================-->   
 <div class="modal fade" id="eliminar">
     <div class="modal-dialog">
         <div class="modal-content">

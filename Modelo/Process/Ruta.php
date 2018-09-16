@@ -23,7 +23,7 @@ class Ruta
         } elseif ($enlace == "cliOk") {
             $module = "Vistas/modules/clientes.php";
         } elseif ($enlace == "empOk") {
-            $module = "Vistas/modules/empleados .php";
+            $module = "Vistas/modules/empleados.php";
         } else{
             $module = "Vistas/modules/panel.php";
         }

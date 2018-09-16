@@ -193,21 +193,21 @@ class Usuario
         }
     }
     // activar y desactivar usuario tabla usuario
-    public function desactivarUsuario($id){
-        $sql = "UPDATE usuario SET estado_proveedor = false WHERE idusuario = ?";
+    public function desactivarUsuario($email){
+        $sql = "UPDATE usuario SET estado_usuario = false WHERE email_usuario = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($id));
+            $resultado->execute(array($email));
             return true;
         }catch(PDOException $e){
             return false;
         }
     }
-    public function activarUsuario($id){
-        $sql = "UPDATE usuario SET estado_proveedor = true WHERE idusuario = ?";
+    public function activarUsuario($email){
+        $sql = "UPDATE usuario SET estado_usuario = true WHERE email_usuario = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($id));
+            $resultado->execute(array($email));
             return true;
         }catch(PDOException $e){
             return false;

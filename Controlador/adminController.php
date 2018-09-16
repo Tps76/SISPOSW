@@ -382,6 +382,63 @@ class adminController
         }
     }
 
+    public static function deleteProd()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['delete'])) {
+                
+                $id = $_POST['delete'];
+                $delete = Proveedor::desactivarProveedor($id);
+                header("location:index.php?action=provOk");
+                
+                if (!$delete) {
+                    echo "error";
+                }
+                
+            }else{
+                // echo "error";
+            }
+        }
+    }
+
+    public static function deleteCli()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['delete'])) {
+                
+                $id = $_POST['delete'];
+                $delete = Proveedor::desactivarProveedor($id);
+                header("location:index.php?action=provOk");
+                
+                if (!$delete) {
+                    echo "error";
+                }
+                
+            }else{
+                // echo "error";
+            }
+        }
+    }
+
+    public static function deleteEmp()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['delete'])) {
+                
+                $email = $_POST['delete'];
+                $delete = Usuario::desactivarUsuario($email);
+                header("location:index.php?action=empOk");
+                
+                if (!$delete) {
+                    echo "error";
+                }
+                
+            }else{
+                // echo "error";
+            }
+        }
+    }
+
     public static function selectPais()
     {
         $paises = Selects::getPais();
@@ -540,42 +597,6 @@ class adminController
                         '<div class="d-flex justify-content-around">
                                 <button class="click btn btn-outline-primary" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
-                            </div>
-                        </td>
-                    </tr>';
-            }
-                
-        }
-    }
-
-    public static function searchCat()
-    {
-        if (isset($_POST['cat'])) {
-            $search = $_POST['cat'];
-            if (is_numeric($search)) {
-                $id = $search;
-                $nombre = "";
-            }else{
-                $nombre = $search;
-                $id = 0;
-            }
-            $cat = Proveedor::getProv($id, $nombre);
-            echo "<pre>";
-            print_r($cat);
-            echo "</pre>";
-            
-            if ($cat) {
-                echo "<tr>
-                        <td>$cat[idproveedor]</td>
-                        <td>$cat[razon_social]</td>
-                        <td>$cat[nombre_proveedor] $cat[apellido_proveedor]</td>
-                        <td>$cat[direccion_proveedor]</td>
-                        <td>$cat[email_proveedor]</td>
-                        <td>$cat[telefono_proveedor]</td>
-                        <td>".
-                        '<div class="d-flex justify-content-around">
-                                <button class="click btn btn-outline-primary" value="'.$cat['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
-                                <button class="click btn btn-outline-danger" value="'.$cat['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
                     </tr>';
