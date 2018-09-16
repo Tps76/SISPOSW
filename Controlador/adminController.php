@@ -650,23 +650,15 @@ class adminController
         }
     }
     //iniciar sesion Manuel Morales y julian :3
-    public function iniciar_sesion()
-    {
-        session_start();
-        if (isset($_POST["user"]) && isset($_POST["pass"])) {
-            $user = $_POST['user'];
-            $password = $_POST['pass'];
-            //echo $user+" "+$password;
-            $consulta = "SELECT * FROM usuario WHERE email_usuario='$user' AND password_usuario='$password'";
-            $consultas = consultas::seleccionar($consulta);
-            if ($consultas["idusuario"] != "") {
-                $_SESSION["nueva"] = $consultas;
-                $consultas = "Bienvenido " . $consultas["idusuario"];
-                header("Location: ../Vistas/index.php?msg=$consultas");
-            }else {
-            $consultas = "Datos incorrectos, sesion no iniciada";
-            header("Location: ../Vistas/index.php?msg=$consultas");
-            }
+    public function iniciar_sesion(){
+        if (isset($_POST["correo_inicio"]) && isset($_POST["pass_inicio"])) {
+           $datos = array("correo" => $_POST['correo_inicio'] , "pass" => $_POST['pass_inicio']);
+           $_SESSION["nueva"]=Usuario::loginUser($datos);
+        }
+    }
+    public function cerrar_sesion(){
+        if (isset($_SESSION["nueva"])) {
+            session_destroy();
         }
     }
 
