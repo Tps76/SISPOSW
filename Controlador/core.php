@@ -6,6 +6,7 @@
 
 /* ==== Controladores ==== */ 
 require_once "Controlador/adminController.php";
+require_once "Controlador/ClientController.php";
 require_once "Controlador/CarritoController.php";
 /* ==== Modelos ==== */
 require_once "Modelo/Include/conexion.php";
