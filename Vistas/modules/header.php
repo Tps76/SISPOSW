@@ -9,8 +9,9 @@
 <section class="col-md-3">
     <?php
         if (isset($_SESSION["nueva"])) {
+            echo $_SESSION["nueva"]["email_usuario"];
         ?>
-    <a href="/SISPOW_WEB/Controlador/Controlador.php?accion=cerrar_sesion" class="btn waves-effect waves-light">Cerrar sesion</a>';
+    <a href="<?php adminController::cerrar_sesion(); ?>" class="btn waves-effect waves-light">Cerrar sesion</a>';
     <?php 
         } else {
     ?>
@@ -22,13 +23,14 @@
         }
     ?>
     <!-- Cuadro ingresar -->
+    <?php adminController::iniciar_sesion(); ?>
     <div class="d-none" id="popover-content">
-        <form action="../Controlador/Controlador.php?accion=iniciar_sesion" method="post" class="form-group">
+        <form method="post" class="form-group">
             
             <label for="username">Usuario:</label>
-            <input class="form-control" type="text" name="user" id="username">
+            <input class="form-control" type="text" name="correo_inicio" id="correo_inicio">
             <label for="userpassword">Contraseña</label>
-            <input class="form-control" type="password" name="pass" id="userpassword">
+            <input class="form-control" type="password" name="pass_inicio" id="pass_inicio">
             <input class="form-control" type="submit" value="Iniciar sesión">
         
         </form>

@@ -213,11 +213,12 @@ class Usuario
     /* =========== LOGIN USER ============ */
     public function loginUser($datos)
     {
-        $consulta = "SELECT email_usuario, password_usuario, tipo_usuario FROM usuario WHERE password_usuario = ?";
+        $consulta = "SELECT * FROM usuario WHERE email_usuario = ? AND password_usuario = ?";
         $con = Connection::getInstance();
         $db = $con->getBD();
         $stmt = $db->prepare($consulta);
-        $stmt->bindParam(1,$datos['pass'],PDO::PARAM_STR);
+        $stmt->bindParam(1,$datos['correo'],PDO::PARAM_STR);
+        $stmt->bindParam(2,$datos['pass'],PDO::PARAM_STR);
         if ($stmt->execute()) {
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }else {
