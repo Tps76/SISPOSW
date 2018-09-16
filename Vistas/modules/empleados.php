@@ -1,17 +1,21 @@
 
-<?php adminController::deleteEmp(); ?> 
+<?php adminController::deleteEmp();
+      adminController::modifyEmp();
+?> 
 <div class="container mt-4 mx-0">
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h3>Lista de Empleados</h3>
                 <!-- Funcionalidad para el buscador -->
-                <div class="input-group mb-3 d-flex search">
-                    <input class="form-control" type="search" placeholder="Introduzca correo o cc del empleado">
-                    <div class="input-group-append">
-                        <button class="btn btn-dark" name=emp type="submit">Buscar</button>
+                <form method="post" class="search">
+                    <div class="input-group mb-3 d-flex">
+                        <input class="form-control" type="search" name=emp placeholder="Introduzca correo o cc del empleado">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">Buscar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
                 <a class="btn btn-success d-flex align-item-center mb-3" href="index.php?action=addEmpleado"><i class="material-icons mr-2">add_circle_outline</i>Añadir Empleado</a>
             </div>
         </div>
@@ -62,6 +66,7 @@
                 <form method="post">
                 <div class="d-none" id=edit></div>
                 <div class="d-none" id=person></div>
+                <div class="d-none" id="user"></div>
                 <div class="row">
                     <div class="col input-group">
                         <div class="input-group-prepend">

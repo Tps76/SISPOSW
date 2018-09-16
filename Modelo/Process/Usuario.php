@@ -178,6 +178,38 @@ class Usuario
         $stmt->close();
     }
 
+    public function getEmpleado($id, $email)
+    {
+        $consulta = "SELECT * FROM trabajadorv WHERE numero_identidad LIKE ? OR email_usuario LIKE ?";
+        $con = Connection::getInstance();
+        $db = $con->getBD();
+        $stmt = $db->prepare($consulta);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT );
+        $stmt->bindParam(2, $email, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            return "error";
+        }
+        $stmt->close();
+    }
+
+    public function getCliente($id, $email)
+    {
+        $consulta = "SELECT * FROM clientev WHERE numero_identidad LIKE ? OR email_usuario LIKE ?";
+        $con = Connection::getInstance();
+        $db = $con->getBD();
+        $stmt = $db->prepare($consulta);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->bindParam(2, $email, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            return "error";
+        }
+        $stmt->close();
+    }
+
     /* =========== LOGIN USER ============ */
     public function loginUser($datos)
     {
@@ -235,7 +267,7 @@ class Usuario
             return false;
         }
     }
-    public static function updateEmpleado($cargo, $persona)
+    public static function updateEmpleado($datos, $persona)
     {
         $sql = "UPDATE trabajador SET idcargo = ? WHERE idpersona = ?";
         try {

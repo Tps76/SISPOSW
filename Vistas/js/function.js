@@ -36,11 +36,12 @@ $(function(){
         let email = $(this).attr("name");
         // console.log("valor persona = "+id);
         // console.log("valor boton = "+val);
-        console.log(email);
+        console.log(id);
         
          
         $("#prueba").html('<input type=hidden value="'+val+'" name="id" >');
         $("#edit").html('<input type=hidden value="'+val+'" name="edit" >');
+        $("#stock").html('<input type=hidden value="' + id + '" name="stock" >');
         $("#person").html('<input type=hidden value="'+id+'" name="person" >');
         $("#user").html('<input type=hidden value="'+email+'" name="user" >');
         $("#delete").html('<input type=hidden value="'+val+'" name=delete >');

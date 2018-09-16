@@ -37,7 +37,7 @@ class Proveedor
     }
     public function getProv($id, $nombre)
     {
-        $consulta = "SELECT idproveedor, razon_social, nombre_proveedor, apellido_proveedor, direccion_proveedor, telefono_proveedor, email_proveedor FROM proveedor WHERE idproveedor = ? OR nombre_proveedor = ?";
+        $consulta = "SELECT idproveedor, razon_social, nombre_proveedor, apellido_proveedor, direccion_proveedor, telefono_proveedor, email_proveedor FROM proveedor WHERE idproveedor LIKE ? OR nombre_proveedor LIKE ?";
         $con = connection::getInstance();
         $db = $con->getBD();
         $stmt = $db->prepare($consulta);

@@ -7,12 +7,14 @@
             <div class="d-flex justify-content-between">
                 <h3>Lista de Clientes</h3>
                 <!-- Funcionalidad para el buscador -->
-                <div class="input-group mb-3 d-flex search">
-                    <input class="form-control" type="search" placeholder="Introduzca correo o cc del cliente">
-                    <div class="input-group-append">
-                        <button class="btn btn-dark" type="submit">Buscar</button>
+                <form method="post" class="search">
+                    <div class="input-group mb-3 d-flex">
+                        <input class="form-control" name=Cli type="search" placeholder="Introduzca correo o cc del cliente">
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">Buscar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
                 <a class="btn btn-success d-flex align-item-center mb-3" href="index.php?action=addCliente"><i class="material-icons mr-2">add_circle_outline</i>Añadir Cliente</a>
             </div>
         </div>

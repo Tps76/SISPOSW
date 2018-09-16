@@ -26,6 +26,19 @@ class producto{
         }
     }
 
+    public function getProd($id)
+    {
+        $sql = "SELECT producto.idproducto, categoria_producto.nombre_categoria, proveedor.razon_social, producto.nombre_producto, producto.venta_producto, stock.cantidad_stock FROM (((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor) INNER JOIN categoria_producto ON producto.idcatproducto = categoria_producto.idcatproducto) WHERE producto.idproducto = ?";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($id));
+            $tabla = $resultado->fetch(PDO::FETCH_ASSOC);
+            return $tabla;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public static function insertProducto($datos){
         $sql = "INSERT INTO producto(idproducto, idcatproducto,idproveedor,nombre_producto,venta_producto,imagen_producto,compra_producto) VALUES(?,?,?,?,?,?,?)";
         try{
@@ -37,11 +50,11 @@ class producto{
         }
     }
 
-    public static function updateProducto($datos){
-        $sql = "UPDATE producto SET idproveedor = ?,nombre_producto = ?,venta_producto = ?,imagen_producto = ?,compra_producto = ? WHERE idcatproducto = ?";
+    public static function updateProducto($datos, $id){
+        $sql = "UPDATE producto SET idproducto = ?, idcatproducto = ?, idproveedor = ?,nombre_producto = ?,venta_producto = ?,imagen_producto = ?,compra_producto = ? WHERE idproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($datos["idproveedor"],$datos["nombre_producto"],$datos["venta_producto"],$datos["imagen_producto"],$datos["compra_producto"],$datos["idcatproducto"]));
+            $resultado->execute(array($datos['code'], $datos['cat'], $datos["prov"],$datos["name"],$datos["priceSale"],$datos["img"],$datos["priceBuy"],$id));
             return true;
         }catch(PDOException $e){
             return false;
@@ -81,9 +94,22 @@ class producto{
             return $e;
         }
     }
+
+    public function updateStock($datos, $id)
+    {
+        $sql = "UPDATE stock SET idproveedor = ?, idproducto = ?, cantidad_stock = ? WHERE idstock = ?";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($datos['prov'], $datos["code"], $datos["cant"], $id));
+            return true;
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
+
     public function viewAllProductos()
     {
-        $sql = "SELECT producto.idproducto, producto.idcatproducto, proveedor.razon_social, producto.nombre_producto, producto.venta_producto, stock.cantidad_stock FROM ((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor)";
+        $sql = "SELECT producto.idproducto, categoria_producto.nombre_categoria, proveedor.razon_social, producto.nombre_producto, producto.venta_producto, stock.cantidad_stock, stock.idstock FROM (((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor) INNER JOIN categoria_producto ON producto.idcatproducto = categoria_producto.idcatproducto) WHERE estado_producto = true";
         try {
             $resultado = connection::getInstance()->getBD()->prepare($sql);
             $resultado->execute();
