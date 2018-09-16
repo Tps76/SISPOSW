@@ -104,6 +104,7 @@ class adminController
         // echo "</pre>";
         if ($clientes) {
             foreach ($clientes as $cliente) {
+                // echo "$cliente[idpersona]";
                 echo '<tr>
                         <td>' . $cliente['numero_identidad'] . '</td>
                         <td>' . $cliente['nombre_persona'] . '</td>
@@ -113,7 +114,8 @@ class adminController
                         <td>' . $cliente['telefono'] . '</td>
                         <td>
                             <div class="d-flex justify-content-around">
-                                <button class="click btn btn-outline-primary" value="' . $cliente['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i><input type="hidden" class="person" value="' . $cliente['idpersona'] . '"> </button>
+                                <button class="d-none persona" id="' . $cliente['idpersona'] . '" value="' . $cliente['idpersona'] . '"></button> 
+                                <button class="click btn btn-outline-primary" name="'. $cliente['email_usuario'] .'" id="' . $cliente['idpersona'] . '" value="' . $cliente['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i></button>
                                 <button class="click btn btn-outline-danger" value="' . $cliente['email_usuario'] . '" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
@@ -139,8 +141,7 @@ class adminController
                         <td>' . $empleado['nombre_catusuario'] . '</td>
                         <td>
                             <div class="d-flex justify-content-around">
-                                <input type="hidden" class="person" value="' . $empleado['idpersona'] . '">
-                                <button class="click btn btn-outline-primary" value="' . $empleado['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-primary" name="'. $empleado['email_usuario'] .'" id="' . $empleado['idpersona'] . '" value="' . $empleado['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" value="' . $empleado['email_usuario'] . '" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
@@ -344,6 +345,68 @@ class adminController
         }
     }
 
+    public static function modifyProd()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['edit'])) {
+
+            }
+        } 
+    }
+
+    public static function modifyCli()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['edit'])) {
+                $identidad = $_POST['edit'];
+                $usuario = $_POST['user'];
+                $persona = $_POST['person'];
+
+                $datos = array(
+                    "id" => $_POST['id'],
+                    "nombre" => $_POST['nombre'],
+                    "apellido" => $_POST['apellido'],
+                    "fecha" => $_POST['date'],
+                    "genero" => $_POST['genero'],
+                    "dir" => $_POST['dir'],
+                    "tel" => $_POST['contacto'],
+                    "ciudad" => $_POST['ciudad'],
+                    "email" => $_POST['email'],
+                    "pass" => $_POST['pass']
+                );
+
+                $cambioId = Usuario::updateIdentidad($datos, $identidad);
+                $cambioUser = Usuario::updateUsuario($datos, $usuario);
+                $cambioPerson = Usuario::updatePersona($datos, $persona);
+                if ($cambioId && $cambioPerson && $cambioUser) {
+                    header("location:index.php?action=cliOk");
+                }
+            }
+        } 
+    }
+
+    public static function modifyEmp()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['edit'])) {
+                $identidad = $_POST['edit'];
+                $usuario = $_POST['user'];
+                $persona = $_POST['person'];
+
+                $datos=array(
+
+                );
+
+                $cambioId = Usuario::updateIdentidad($datos, $identidad);
+                $cambioUser = Usuario::updateUsuario($datos, $usuario);
+                $cambioPerson = Usuario::updateEmpleado($datos, $persona);
+                if ($cambioId && $cambioPerson && $cambioUser) {
+                    header("location:index.php?action=empOk");
+                }
+            }
+        } 
+    }
+
     public static function deleteCat()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -388,8 +451,8 @@ class adminController
             if (isset($_POST['delete'])) {
                 
                 $id = $_POST['delete'];
-                $delete = Proveedor::desactivarProveedor($id);
-                header("location:index.php?action=provOk");
+                $delete = producto::desactivarProducto($id);
+                header("location:index.php?action=prodOk");
                 
                 if (!$delete) {
                     echo "error";
@@ -406,9 +469,9 @@ class adminController
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['delete'])) {
                 
-                $id = $_POST['delete'];
-                $delete = Proveedor::desactivarProveedor($id);
-                header("location:index.php?action=provOk");
+                $email = $_POST['delete'];
+                $delete = Usuario::desactivarUsuario($email);
+                header("location:index.php?action=cliOk");
                 
                 if (!$delete) {
                     echo "error";

@@ -213,11 +213,44 @@ class Usuario
             return false;
         }
     }
-    public static function updateUsuario($datos){
-        $sql = "UPDATE usuario SET email_usuario = ?,password_usuario = ? WHERE idusuario = ?";
+    public static function updateIdentidad($datos, $id)
+    {
+        $sql = "UPDATE identidad SET numero_identidad = ? WHERE numero_identidad = ?";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($datos["id"], $id));
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    public static function updatePersona($datos, $persona)
+    {
+        $sql = "UPDATE persona SET nombre_persona = ?, apellido_persona = ?, genero = ?, fecha_nacimiento = ?, idciudad = ?, direccion = ?, telefono = ? WHERE idpersona = ?";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($datos["nombre"], $datos["apellido"], $datos["genero"], $datos["fecha"], $datos["ciudad"], $datos["dir"], $datos["tel"], $persona));
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    public static function updateEmpleado($cargo, $persona)
+    {
+        $sql = "UPDATE trabajador SET idcargo = ? WHERE idpersona = ?";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($datos["cargo"], $persona));
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    public static function updateUsuario($datos, $email){
+        $sql = "UPDATE usuario SET email_usuario = ?,password_usuario = ? WHERE email_usuario = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($datos["idusuario"],$datos["password_usuario"]));
+            $resultado->execute(array($datos["email"],$datos["pass"], $email));
             return true;
         }catch(PDOException $e){
             return false;

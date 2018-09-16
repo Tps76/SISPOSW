@@ -1,3 +1,6 @@
+<?php adminController::modifyCli();
+      adminController::deleteCli();
+?>
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
@@ -30,7 +33,13 @@
                     <!-- Aquí es donde deben meter código php
                         deben de repetir desde la tr y    
                         en las td llenar los campos -->
-                    <?php adminController::getAllCli(); ?>
+                    <?php
+                        if (!isset($_POST['Cli'])) {
+                            adminController::getAllCli(); 
+                        } else {
+                            adminController::searchCli();
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -53,6 +62,7 @@
                 <form method="post">
                 <div class="d-none" id="edit"></div>
                 <div class="d-none" id="person"></div>
+                <div class="d-none" id="user"></div>
                 <div class="row">
                     <div class="col input-group">
                         <div class="input-group-prepend">
@@ -168,9 +178,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Content</p>
+                <p>Está seguro de eliminar?</p>
             </div>
             <div class="modal-footer">
+                <form method="post">
+                    <div class="d-none" id="delete"></div>
+                    <button class="btn btn-warning" type="submit">Eliminar</button>
+                </form>
                 <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

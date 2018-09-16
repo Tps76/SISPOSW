@@ -30,12 +30,19 @@ $(function(){
     //     $('#myInput').trigger('focus')
     // });
     $(".click").click(function () { 
+        // valores obtenidos
         let val = $(this).val();
-        let person = $(".person").val();
-        console.log("valor boton = "+val);
+        let id = $(this).attr("id");
+        let email = $(this).attr("name");
+        // console.log("valor persona = "+id);
+        // console.log("valor boton = "+val);
+        console.log(email);
+        
+         
         $("#prueba").html('<input type=hidden value="'+val+'" name="id" >');
         $("#edit").html('<input type=hidden value="'+val+'" name="edit" >');
-        $("#person").html('<input type=hidden value="'+person+'" name="person" >');
+        $("#person").html('<input type=hidden value="'+id+'" name="person" >');
+        $("#user").html('<input type=hidden value="'+email+'" name="user" >');
         $("#delete").html('<input type=hidden value="'+val+'" name=delete >');
         
     });
