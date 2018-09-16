@@ -1,4 +1,7 @@
-<?php adminController::addCategories(); ?>
+<?php adminController::addCategories(); 
+      adminController::modifyCat();
+      adminController::deleteCat();
+?>
 <div class="row mt-4">
     <div class="col-md-3">
         <div class="card">
@@ -34,5 +37,62 @@
                 <?php adminController::getAllCategories(); ?>
             </tbody>
         </table>
+    </div>
+</div>
+<!-- Aquí estan la ventanas modales -->
+<!--========================
+        Modificar Categoria
+    =======================-->
+<div class="modal fade" id=editar>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Categoría</h5>
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="d-none" id="edit"></div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name=Cat class="form-control" placeholder="Nombre categoría">
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                    </form>
+                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--========================
+        Eliminar Categoria
+    =======================-->
+<div class="modal fade" id="eliminar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Empleado</h5>
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post">
+                    <div class="d-none" id="delete"></div>
+                    <button class="btn btn-warning" type="submit">Eliminar</button>
+                </form>
+                <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
     </div>
 </div>

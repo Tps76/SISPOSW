@@ -38,14 +38,14 @@ class adminController
                         <th>' . $categoria['nombre_categoria'] . '</th>
                         <th>
                             <div class="d-flex justify-content-between">
-                                <button class="click btn btn-outline-primary"value="'.$categoria['idcatproducto'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click btn btn-outline-primary" value="'.$categoria['idcatproducto'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" value="'.$categoria['idcatproducto'].'"data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </th>
                     </tr>';
             }
         }else{
-            echo("error");
+            // echo("error");
         }
     }
 
@@ -207,11 +207,11 @@ class adminController
                 );
                 $prod = producto::insertProducto($datos);
                 $stock= producto::addStock($datos);
-                if ($prod && $stcok) {
+                if ($prod && $stock) {
                     header("location:index.php?action=productos");
                 }
             }else{
-                echo "error";
+                // echo "error";
             }
         }
     }
@@ -262,7 +262,7 @@ class adminController
         
     public static function addEmpleado()
     {
-        if ($_SERVER['REQUEST_METHOD'] == "post") {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['id'])) {
                 $datos = array(
                     "id" => $_POST['id'],
@@ -296,18 +296,27 @@ class adminController
                             if ($idPersona) {
                                 $cargo = $_POST['cargo']; 
                                 $empleado = Usuario::regEmpleado($idUsuario, $idPersona, $cargo);
-                            } else {
-                                echo ("error");
+                                if ($empleado) {
+                                    header("location:index.php?action=empleados");
+                                }
                             }
-                        } else {
-                            echo "error";
                         }
-                    } else {
-                        echo "error";
                     }
-                } else {
-                    echo "erro";
                 }
+            }
+        }
+    }
+
+    public static function modifyCat()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['edit'])) {
+                $id = $_POST['edit'];
+                $name = $_POST['Cat'];
+                $edit = Categoria::updateCategoriaProducto($name, $id);
+                header("location:index.php?action=catOk");
+            }else {
+                // echo "error1";
             }
         }
     }
@@ -331,6 +340,25 @@ class adminController
                 header("location:index.php?action=provOk");
             }else {
                 // echo "error1";
+            }
+        }
+    }
+
+    public static function deleteCat()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['delete'])) {
+                
+                $id = $_POST['delete'];
+                $delete = Categoria::desactivarCategoriaProducto($id);
+                header("location:index.php?action=catOk");
+                
+                if (!$delete) {
+                    echo "error";
+                }
+                
+            }else{
+                // echo "error";
             }
         }
     }
@@ -392,6 +420,27 @@ class adminController
             return "error";
         }
     }
+
+    public static function selectProv()
+    {
+        $provs = Proveedor::getAllProv();
+        if ($provs != "error") {
+            foreach ($provs as $prov) {
+                echo '<option value="' . $prov['idproveedor'] . '">' . $prov['razon_social'] . " - " . $prov['nombre_proveedor'] . " " . $prov['apellido_proveedor'] . '</option>';
+            }
+        }
+    }
+
+    public static function selectCat()
+    {
+        $categories = Categoria::getCategoriaProductoActivo();
+        if ($categories) {
+            foreach ($categories as $category) {
+                echo '<option value="' . $category['idcatproducto'] . '">' . $category['nombre_categoria'] . '</option>';
+            }
+        }
+    }
+    
     //registro julian
     public function registrar()
     {

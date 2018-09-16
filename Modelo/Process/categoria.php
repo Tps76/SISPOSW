@@ -25,11 +25,11 @@ class Categoria
         }
     }
 
-    public static function updateCategoriaProducto($nombre){
-        $sql = "UPDATE categoria_producto SET nombre_categoria = ?";
+    public static function updateCategoriaProducto($nombre, $id){
+        $sql = "UPDATE categoria_producto SET nombre_categoria = ? WHERE idcatproducto = ?";
         try{
             $resultado = connection::getInstance()->getBD()->prepare($sql);
-            $resultado->execute(array($nombre));
+            $resultado->execute(array($nombre, $id));
             return true;
         }catch(PDOException $e){
             return false;
