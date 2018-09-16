@@ -1,4 +1,4 @@
-<!-- NOTA: hay que añadir los names en los inputs -->
+<?php adminController::addEmpleado();?>
 <div class="container col-8 mt-4 mx-0">
    <div class="card">
        <div class="card-header">
