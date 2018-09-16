@@ -64,9 +64,7 @@
             </div>
             <div class="modal-body">
                 <form method="post">
-                <div class="d-none" id="edit">
-                
-                </div>
+                <div class="d-none" id="edit"></div>
                 <div class="row">
                     <div class="col input-group">
                         <div class="input-group-prepend">
