@@ -1,3 +1,4 @@
+<?php ClientController::register(); ?>
 <section class="col-md-2">
     <p class="align-middle">Logo empresa</p>
 </section>
@@ -109,7 +110,7 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="email">Email:</label>
-                                <input type="text" class="form-control" name="emai" id="emai" onkeyup="validar()" onchange="validar()">
+                                <input type="text" class="form-control" name="email" id="emai" onkeyup="validar()" onchange="validar()">
                             </div>
                             <div class="col">
                                 <label for="dir">Dirección:</label>
