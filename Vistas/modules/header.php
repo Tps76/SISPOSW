@@ -2,18 +2,21 @@
     // echo $_SESSION['admin'];
 ?>
 <section class="col-md-2">
-    <p class="align-middle">Logo empresa</p>
+    <p class="align-middle m-0">Logo empresa</p>
 </section>
 <section class="col-md-7 input-group">
         <input class="search form-control" type="search" name="search" id="search" method="POST">
         <input class="search__btn" type="submit" value="Buscar">
 </section>
 <section class="col-md-3">
+    <p class="d-inline-block m-0">
     <?php
         if (isset($_SESSION["nueva"]) && $_SESSION['nueva']) {
-            // echo $_SESSION["nueva"];
+            print $_SESSION['cliente']['email_usuario'];
         ?>
-    <form method="post">
+    </p>
+    <a href="#" data-toggle="modal" data-target="#carrito" class="text-success"><i class="material-icons align-middle">shopping_cart</i></a>
+    <form method="post" class="d-inline-block">
         <button class="btn btn-primary" type="submit" name="cerrar">Cerrar Sesion</button>
     </form>
         
@@ -38,7 +41,7 @@
             <input class="form-control" type="text" name="correo_inicio" id="correo_inicio">
             <label for="userpassword">Contraseña</label>
             <input class="form-control" type="password" name="pass_inicio" id="pass_inicio">
-            <input class="form-control" type="submit" value="Iniciar sesión">
+            <input class="form-control mt-2" type="submit" value="Iniciar sesión">
         
         </form>
     </div>
@@ -143,6 +146,42 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tabla compras Modal -->
+    <div class="modal fade" id="carrito">
+        <div class="modal-dialog form-tam">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Lista de productos</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>nombre</th>
+                                <th>cantidad</th>
+                                <th>precio c/u</th>
+                                <th>accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan=2>subtotal</th>
+                                <th colspan=2>cantidad</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
