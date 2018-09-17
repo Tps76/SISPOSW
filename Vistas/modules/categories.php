@@ -2,17 +2,7 @@
 <p class="menu__title">Categorias</p>
 <ul class=menu>
     <?php
-    $categorias = array(
-        "Motos",
-        "Carros");
-
-        
-                
-        for ($i=0; $i < 2; $i++) {
-            
-            echo '<li class="menu__item"><a class="menu__link" href="#"> ' . $categorias[$i] . '</a></li>';
-           
-        } 
+    ClientController::getCat();
     ?>
     <li class="">
         <a class="menu__link" href="#">
