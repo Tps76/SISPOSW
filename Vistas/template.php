@@ -30,7 +30,7 @@
                 // echo "no existe";
         ClientController::logIn();
     }
-        if (isset($_SESSION['admin']) || isset($_SESSION['empleado']) || isset($_SESSION['nueva'])) {
+        if (isset($_SESSION['admin']) || isset($_SESSION['empleado'])) {
         
     ?>
     <!-- ========================== 
