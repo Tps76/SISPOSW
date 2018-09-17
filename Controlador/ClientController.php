@@ -81,7 +81,7 @@ class ClientController
     
     public static function getProd()
     {
-        $prods = producto::getViewProducto();
+        $prods = producto::viewAllProductos();
         if ($prods) {
             $i = 1;
             foreach ($prods as $prod) {
@@ -120,14 +120,16 @@ class ClientController
                                     <img class="img-fluid" src="'.$prod['imagen_producto'].'" alt="">
                                 </div>
                                 <div class="col-5 d-flex flex-column justify-content-center">
-                                    <p>Precio del producto </p>
-                                    <p class="align-self-end pr-4">'.$prod['venta_producto'].'</p>                                    
+                                    <p>Precio del producto: </p>
+                                    <p class="align-self-end pr-4">'.$prod['venta_producto']. '</p>
+                                    <p>Cantidad: </p>
+                                    <form method="post" class="d-inline-block">
+                                    <input name="cantidad" class="d-block w-100 form-control" type="number" value="1" min="1" max="'.$prod['cantidad_stock'].'">                                    
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <form method="post">
-                                <button type="button" name="compra" value="'.$prod['idproducto'].'" class="btn btn-success">Añadir al carrito</button>
+                                <button type="submit" name="compra" value="'.$prod['idproducto'].'" class="btn btn-success">Añadir al carrito</button>
                             </form>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
@@ -151,4 +153,29 @@ class ClientController
     {
         # code...
     }
+
+    // public static function addCart()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    //         if (isset($_POST['compra'])) {
+    //             $code = $_POST['compra'];
+    //             if (empty($_POST['cantidad']) || !isset($_POST['cantidad'])) {
+    //                 $cantidad = 1;
+    //             }else{
+    //                 $cantidad = $_POST['cantidad'];
+    //             }
+    //             $add =CarritoController::addItem();
+    //             // echo($add);
+    //             if ($add) {
+    //                 header('location:index.php');
+    //             }
+    //         }
+    //     }
+    // }
+
+    // public function getItems()
+    // {
+        
+    // }
+
 }

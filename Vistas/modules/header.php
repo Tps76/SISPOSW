@@ -1,5 +1,16 @@
 <?php ClientController::register();
-    // echo $_SESSION['admin'];
+    $cart = new CarritoController();
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if (isset($_POST['compra'])) {
+            $code = $_POST['compra'];
+            if (empty($_POST['cantidad']) || !isset($_POST['cantidad'])) {
+                $cantidad = 1;
+            }else{
+                $cantidad = $_POST['cantidad'];
+            }
+            $cart->addItem($code, $cantidad);
+        }
+    }
 ?>
 <section class="col-md-2">
     <p class="align-middle m-0">Logo empresa</p>
@@ -32,7 +43,10 @@
     ?>
     <!-- Cuadro ingresar -->
     <?php //adminController::iniciar_sesion(); 
-        
+        if (isset($_POST['remove'])) {
+            $code = $_POST['remove'];
+            $cart->removeItem($code);
+        }
     ?>
     <div class="d-none" id="popover-content">
         <form method="post" class="form-group">
@@ -156,6 +170,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Lista de productos</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped table-bordered">
@@ -168,20 +185,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            <?php $cart->getItem(); ?>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th colspan=2>subtotal</th>
-                                <th colspan=2>cantidad</th>
+                                <th colspan=2><?php $cart->getTotalpayment();?></th>
                             </tr>
                         </tfoot>
                     </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Seguir Comprando</button>
                 </div>
             </div>
         </div>

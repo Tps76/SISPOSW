@@ -12,7 +12,7 @@ class CarritoController
             $this->carrito = $_SESSION['carrito'];
         }
     }
-    public function addItem($code)
+    public function addItem($code, $amount)
     {
         $dato = $code;
 
@@ -20,21 +20,23 @@ class CarritoController
         if ($item > 0) {
             // echo "<pre>";
             // print_r($this->carrito);
+            // echo "</pre>";
+            // return "si encontro";
             $cart = $this->carrito;
-            $item['cant']=1;
+            $item['cant']=$amount;
             if (!empty($cart)) {
                 foreach ($cart as $key => $value) {
-                    if ($value['cod_prod'] == $dato) {
-                        //     $item['cant']+= $value['cant'];
+                    if ($value['idproducto'] == $dato) {
+                        $item['cant']+= $value['cant'];
                     }
                 }
             }
-            $item['subtotal'] = $item['cant'] * $item['precio_prod'];
-            $id = $item['cod_prod'];
+            $item['subtotal'] = $item['cant'] * $item['venta_producto'];
+            $id = $item['idproducto'];
             $_SESSION['carrito'][$id] = $item;
             $this->updateCart();
-            return 1;
-            // header('location:index');
+            header("index.php");
+            return true;
         }else{
             return $dato;
         }
@@ -46,12 +48,12 @@ class CarritoController
                 foreach ($this->carrito as $key => $value) {
                 $code = $key;
                 $html.= '<tr>
-                            <td>'.$value['nom_prod'].'</td>
-                            <td>'.$value['precio_prod'].'</td>
+                            <td>'.$value['nombre_producto'].'</td>
                             <td>'.$value['cant'].'</td>
+                            <td>'.$value['venta_producto'].'</td>
                             <td>
                                 <form method="POST">
-                                    <button type="submit" class="waves-effect red accent-4 btn" name="remove" value="'.$code.'">
+                                    <button type="submit" class="btn btn-danger" name="remove" value="'.$code.'">
                                     <i class="material-icons">delete_forever</i>
                                     </button>
                                 </form>
@@ -67,8 +69,20 @@ class CarritoController
     {
         unset($_SESSION['carrito'][$code]);
         $this->updateCart();
-        return "1";
+        // header("location:index.php");
     }
+
+    public function getTotalpayment()
+    {
+        $total = 0;
+        if (!empty($this->carrito)) {
+            foreach ($this->carrito as $key) {
+                $total+= $key["subtotal"];
+            }
+        }
+        echo $total;
+    }
+
     public function updateCart()
     {
         self::__construct();

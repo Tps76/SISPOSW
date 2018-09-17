@@ -110,7 +110,7 @@ class producto{
 
     public function viewAllProductos()
     {
-        $sql = "SELECT producto.idproducto, categoria_producto.nombre_categoria, proveedor.razon_social, producto.nombre_producto, producto.venta_producto, stock.cantidad_stock, stock.idstock FROM (((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor) INNER JOIN categoria_producto ON producto.idcatproducto = categoria_producto.idcatproducto) WHERE estado_producto = true";
+        $sql = "SELECT producto.idproducto, categoria_producto.nombre_categoria, proveedor.razon_social, producto.nombre_producto, producto.imagen_producto, producto.venta_producto, stock.cantidad_stock, stock.idstock FROM (((producto INNER JOIN stock ON producto.idproducto = stock.idproducto) INNER JOIN proveedor ON producto.idproveedor = proveedor.idproveedor) INNER JOIN categoria_producto ON producto.idcatproducto = categoria_producto.idcatproducto) WHERE estado_producto = true";
         try {
             $resultado = connection::getInstance()->getBD()->prepare($sql);
             $resultado->execute();
