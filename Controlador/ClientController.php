@@ -77,7 +77,22 @@ class ClientController
     
     public static function getProd()
     {
-        # code...
+        $prods = producto::getViewProducto();
+        if ($prods) {
+            foreach ($prods as $prod) {
+                echo '
+                <div class="col-md-3 mar">
+                    <div class="card">
+                        <img src="'.$prod['imagen_producto'].'" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">'.$prod['nombre_producto'].'</h5>
+                            <a href="#" class="btn btn-success">comprar</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#detalle">ver más</a>
+                        </div>
+                    </div>
+                </div>';
+            }    
+        }
     }
 
     public static function getCat()
