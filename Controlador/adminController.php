@@ -189,7 +189,7 @@ class adminController
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // Subir imagen al servidor
             if (isset($_FILES['img'])) {
-                $dir = $_SERVER['DOCUMENT_ROOT']."SISPOSW/Vistas/assets/uploads";
+                $dir = "Vistas/assets/uploads";
                 $img = $_FILES['img'];
                 $share = uploadFile::upload($dir, $img);
             }else{
