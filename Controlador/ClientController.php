@@ -13,9 +13,9 @@ class ClientController
                     "pass" => $_POST['pass_inicio']
                 );
                 $login = Usuario::loginUser($datos);
-           
+                // print_r($login);
+                // echo $login['tipo_usuario'];
                 if ($login != "error") {
-                    $_SESSION['nueva'] = true;
                     if($login['tipo_usuario'] == 1){
                         $_SESSION['admin'] = true;
                     }elseif($login['tipo_usuario'] == 2){
@@ -24,6 +24,7 @@ class ClientController
                         $_SESSION['cliente'] = true;
                         // $_SESSION['cliente'][];
                     }
+                    $_SESSION['nueva'] = true;
                     header("location:index.php");
                 }
             }

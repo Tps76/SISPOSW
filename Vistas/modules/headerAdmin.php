@@ -1,3 +1,10 @@
+<?php 
+// if (isset($_SESSION['nueva']) && $_SESSION['nueva']) {
+//                 # code...
+//     adminController::cerrar_sesion();
+//                 // echo "exite";
+// }
+?>
 <div class="container-fluid">
     <div class="d-flex justify-content-between p-3">
         <div class="logo text-white ml-3">
@@ -8,7 +15,9 @@
                 <a class="dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                 <div class="dropdown-menu">
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php adminController::cerrar_sesion(); ?>">Cerrar Sesión</a>
+                    <form method="post">
+                        <button name="cerrar" class="dropdown-item">Cerrar Sesión</button>
+                    </form>
                 </div>
             </span>
             <div class="profile">

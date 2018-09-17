@@ -1,4 +1,6 @@
-<?php ClientController::register(); ?>
+<?php ClientController::register();
+    // echo $_SESSION['admin'];
+?>
 <section class="col-md-2">
     <p class="align-middle">Logo empresa</p>
 </section>
@@ -27,14 +29,7 @@
     ?>
     <!-- Cuadro ingresar -->
     <?php //adminController::iniciar_sesion(); 
-        if (isset($_SESSION['nueva']) &&$_SESSION['nueva']) {
-            # code...
-            adminController::cerrar_sesion();
-            // echo "exite";
-        }else{
-            // echo "no existe";
-            ClientController::logIn();
-        }
+        
     ?>
     <div class="d-none" id="popover-content">
         <form method="post" class="form-group">
