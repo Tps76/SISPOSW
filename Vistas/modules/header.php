@@ -11,7 +11,7 @@
         if (isset($_SESSION["nueva"])) {
             echo $_SESSION["nueva"]["email_usuario"];
         ?>
-    <a href="<?php adminController::cerrar_sesion(); ?>" class="btn waves-effect waves-light">Cerrar sesion</a>';
+    <a href="<?php adminController::cerrar_sesion(); ?>" class="btn waves-effect waves-light">Cerrar sesion</a>
     <?php 
         } else {
     ?>
