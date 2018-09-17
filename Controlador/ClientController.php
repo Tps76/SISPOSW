@@ -75,7 +75,10 @@ class ClientController
 
     public static function getCat()
     {
-        # code...
+        $tabla = Categoria::getCategoriaProductoActivo();
+        foreach($tabla as $resultados){
+            echo '<li class="menu__item"><a class="menu__link" href="#"> ' . $resultados['nombre_categoria'] . '</a></li>';
+        }
     }
 
     public static function searchProds()
