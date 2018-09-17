@@ -1,6 +1,6 @@
 <?php ClientController::register();
     $cart = new CarritoController();
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['cliente'])) {
         if (isset($_POST['compra'])) {
             $code = $_POST['compra'];
             if (empty($_POST['cantidad']) || !isset($_POST['cantidad'])) {
@@ -43,7 +43,7 @@
     ?>
     <!-- Cuadro ingresar -->
     <?php //adminController::iniciar_sesion(); 
-        if (isset($_POST['remove'])) {
+        if (isset($_POST['remove']) && isset($_SESSION['cliente'])) {
             $code = $_POST['remove'];
             $cart->removeItem($code);
         }
