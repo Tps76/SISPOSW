@@ -195,7 +195,7 @@ class adminController
             }else{
                 $share = null;
             }
-            if (isset($_POST['code'])) {
+            if (isset($_POST['code']) && isset($_POST['idcat']) && isset($_POST['idprov'])) {
                 $datos = array(
                     "code" => $_POST['code'],
                     "name" => $_POST['name'],
