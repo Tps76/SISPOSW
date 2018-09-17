@@ -6,10 +6,16 @@ class ClientController
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // $id = $login[''];
-            if (isset($_POST['']) && isset($_POST [''])) {
-
+            if (isset($_POST["correo_inicio"]) && isset($_POST["pass_inicio"])) {
+                
+                $datos = array(
+                    "correo" => $_POST['correo_inicio'], 
+                    "pass" => $_POST['pass_inicio']
+                );
+                $login = Usuario::loginUser($datos);
+           
                 if ($login != "error") {
-                    $login = Usuario::loginUser($datos);
+                    $_SESSION['nueva'] = true;
                     if($login['tipo_usuario'] == 1){
                         $_SESSION['admin'] = true;
                     }elseif($login['tipo_usuario'] == 2){
@@ -18,6 +24,7 @@ class ClientController
                         $_SESSION['cliente'] = true;
                         // $_SESSION['cliente'][];
                     }
+                    header("location:index.php");
                 }
             }
 

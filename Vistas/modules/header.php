@@ -8,10 +8,13 @@
 </section>
 <section class="col-md-3">
     <?php
-        if (isset($_SESSION["nueva"])) {
-            echo $_SESSION["nueva"]["email_usuario"];
+        if (isset($_SESSION["nueva"]) && $_SESSION['nueva']) {
+            // echo $_SESSION["nueva"];
         ?>
-    <a href="<?php adminController::cerrar_sesion(); ?>" class="btn waves-effect waves-light">Cerrar sesion</a>';
+    <form method="post">
+        <button class="btn btn-primary" type="submit" name="cerrar">Cerrar Sesion</button>
+    </form>
+        
     <?php 
         } else {
     ?>
@@ -23,7 +26,16 @@
         }
     ?>
     <!-- Cuadro ingresar -->
-    <?php adminController::iniciar_sesion(); ?>
+    <?php //adminController::iniciar_sesion(); 
+        if (isset($_SESSION['nueva']) &&$_SESSION['nueva']) {
+            # code...
+            adminController::cerrar_sesion();
+            // echo "exite";
+        }else{
+            // echo "no existe";
+            ClientController::logIn();
+        }
+    ?>
     <div class="d-none" id="popover-content">
         <form method="post" class="form-group">
             
