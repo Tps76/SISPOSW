@@ -13,15 +13,18 @@ class ClientController
                     "pass" => $_POST['pass_inicio']
                 );
                 $login = Usuario::loginUser($datos);
-                // print_r($login);
                 // echo $login['tipo_usuario'];
                 if ($login != "error") {
                     if($login['tipo_usuario'] == 1){
                         $_SESSION['admin'] = true;
+                        $_SESSION['admin']['user'] = $login;
                     }elseif($login['tipo_usuario'] == 2){
                         $_SESSION['empleado'] = true;
+                        $_SESSION['empleado']['user'] = $login;
                     }else{
-                        $_SESSION['cliente'] = true;
+                        // $_SESSION['cliente'] = true;
+                        $_SESSION['cliente'] = $login;
+                        print_r($login);
                         // $_SESSION['cliente'][];
                     }
                     $_SESSION['nueva'] = true;
@@ -80,18 +83,58 @@ class ClientController
     {
         $prods = producto::getViewProducto();
         if ($prods) {
+            $i = 1;
             foreach ($prods as $prod) {
+                // echo $prod['imagen_producto'];
+                if ($prod['imagen_producto'] == null) {
+                    $prod['imagen_producto'] = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_164eefd60a6%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_164eefd60a6%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107.203125%22%20y%3D%2296.3%22%3E286x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E";
+                }
                 echo '
-                <div class="col-md-3 mar">
-                    <div class="card">
-                        <img src="'.$prod['imagen_producto'].'" alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">'.$prod['nombre_producto'].'</h5>
-                            <a href="#" class="btn btn-success">comprar</a>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#detalle">ver más</a>
+                        <div class="col-md-3 card-group">
+                            <div class="card">
+                                <img src="'.$prod['imagen_producto'].'" alt="" class="card-img-top">
+                                <div class="card-body p-2">
+                                    <h5 class="card-title">'.$prod['nombre_producto'].'</h5>
+                                    <div>
+                                        <form class="d-inline-block" method="post">
+                                            <button name="compra" value="'.$prod['idproducto'].'" class="btn btn-success">comprar</button>
+                                        </form>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#detalle'.$i.'">ver más</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    /*============== Ventana Modal =================== */    
+                echo '<div class="modal fade" id="detalle'.$i.'" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="title">'.$prod['nombre_producto'].'</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
-                </div>';
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-7">
+                                    <img class="img-fluid" src="'.$prod['imagen_producto'].'" alt="">
+                                </div>
+                                <div class="col-5 d-flex flex-column justify-content-center">
+                                    <p>Precio del producto </p>
+                                    <p class="align-self-end pr-4">'.$prod['venta_producto'].'</p>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post">
+                                <button type="button" name="compra" value="'.$prod['idproducto'].'" class="btn btn-success">Añadir al carrito</button>
+                            </form>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                        </div>
+                        </div>
+                    </div>';
+                $i++;    
             }    
         }
     }
