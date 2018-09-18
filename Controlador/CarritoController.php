@@ -4,7 +4,7 @@
 
 class CarritoController
 {
-    private $carrito = array();
+    public $carrito = array();
 
     public function __construct()
     {
@@ -45,21 +45,21 @@ class CarritoController
     {
         $html = '';
         if (!empty($this->carrito)) {
-                foreach ($this->carrito as $key => $value) {
-                $code = $key;
-                $html.= '<tr>
-                            <td>'.$value['nombre_producto'].'</td>
-                            <td>'.$value['cant'].'</td>
-                            <td>'.$value['venta_producto'].'</td>
-                            <td>
-                                <form method="POST">
-                                    <button type="submit" class="btn btn-danger" name="remove" value="'.$code.'">
-                                    <i class="material-icons">delete_forever</i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>'
-                        ;
+            foreach ($this->carrito as $key => $value) {
+            $code = $key;
+            $html.= '<tr>
+                        <td>'.$value['nombre_producto'].'</td>
+                        <td>'.$value['cant'].'</td>
+                        <td>'.$value['venta_producto'].'</td>
+                        <td>
+                            <form method="post">
+                                <button type="submit" class="btn btn-danger" name="remove" value="'.$code.'">
+                                <i class="material-icons">delete_forever</i>
+                                </button>
+                            <form>
+                        </td>
+                    </tr>'
+                    ;
             }
         }
         echo $html;
@@ -69,7 +69,7 @@ class CarritoController
     {
         unset($_SESSION['carrito'][$code]);
         $this->updateCart();
-        // header("location:index.php");
+        header("location:index.php");
     }
 
     public function getTotalpayment()
@@ -88,3 +88,4 @@ class CarritoController
         self::__construct();
     }
 }
+new CarritoController;

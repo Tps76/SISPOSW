@@ -13,17 +13,18 @@
     }
 ?>
 <section class="col-md-2">
-    <p class="align-middle m-0">Logo empresa</p>
+    <p class="align-middle m-0 text-white">Logo empresa</p>
 </section>
-<section class="col-md-7 input-group">
+<section class="col-md-7 input-group m-0">
         <input class="search form-control" type="search" name="search" id="search" method="POST">
         <input class="search__btn" type="submit" value="Buscar">
 </section>
-<section class="col-md-3">
+<section class="col-md-3 d-flex justify-content-end align-items-center">
     <p class="d-inline-block m-0">
     <?php
-        if (isset($_SESSION["nueva"]) && $_SESSION['nueva']) {
+        if (isset($_SESSION["cliente"])) {
             print $_SESSION['cliente']['email_usuario'];
+            // print($_SESSION['cliente']);
         ?>
     </p>
     <a href="#" data-toggle="modal" data-target="#carrito" class="text-success"><i class="material-icons align-middle">shopping_cart</i></a>
@@ -34,9 +35,9 @@
     <?php 
         } else {
     ?>
-    <ul class="session text-right">
-        <li class="session__item"><a class="session__link" data-placement="bottom" role="button" data-toggle="popover" data-title="" data-container="body"  data-html="true" href="#" id="login">Iniciar sesion  /</a></li>
-        <li class="session__item"><a class="session__link" href="#" id="signUp" data-toggle="modal" data-target="#regModal">Registrarse</a></li>
+    <ul class="session text-right m-0 p-0">
+        <li class="session__item"><a class="session__link text-white" data-placement="bottom" role="button" data-toggle="popover" data-title="" data-container="body"  data-html="true" href="#" id="login">Iniciar sesion  /</a></li>
+        <li class="session__item"><a class="session__link text-white" href="#" id="signUp" data-toggle="modal" data-target="#regModal">Registrarse</a></li>
     </ul>
     <?php    
         }
@@ -84,7 +85,7 @@
                                 <input type="text" class="form-control" name="id" id="id" onkeyup="validar()" onchange="validar()">
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row mt-3"> 
                             <div class="col">
                                 <label for="name">Nombres:</label>
                                 <input type="text" class="form-control" name="name" id="name" onkeyup="validar()" onchange="validar()">

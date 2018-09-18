@@ -10,7 +10,7 @@ class modelo_combos{
             $this->seleccionar_construct();
         }
     }
-    public function seleccionar_construct(){
+    public function seleccionar_construct(){ 
         $consulta="SELECT * FROM pais";
         echo '<option value="0">Seleccione su país</option>';
         try{

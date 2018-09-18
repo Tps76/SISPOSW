@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-09-2018 a las 23:42:43
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Tiempo de generación: 18-09-2018 a las 02:00:21
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,6 +48,16 @@ CREATE TABLE `categoria_producto` (
   `estado_categoria` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`idcatproducto`, `nombre_categoria`, `estado_categoria`) VALUES
+(1, 'Calzado', 1),
+(2, 'Ropa', 1),
+(3, 'Tecnología', 1),
+(4, 'Joyeria', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +71,14 @@ CREATE TABLE `categoria_usuario` (
   `fecha_creacion` date NOT NULL,
   `estado_catusuario` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoria_usuario`
+--
+
+INSERT INTO `categoria_usuario` (`idcatusuario`, `idpermisos`, `nombre_catusuario`, `fecha_creacion`, `estado_catusuario`) VALUES
+(1, 1, 'admin', '2018-09-15', 1),
+(2, 2, 'special', '2018-09-15', 1);
 
 -- --------------------------------------------------------
 
@@ -188,6 +206,16 @@ CREATE TABLE `cliente` (
   `estado_cliente` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`idcliente`, `idpersona`, `idusuario`, `estado_cliente`) VALUES
+(1, 1, 2, 1),
+(2, 4, 5, 1),
+(3, 5, 6, 1),
+(4, 3, 7, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -197,6 +225,7 @@ CREATE TABLE `cliente` (
 CREATE TABLE `clientev` (
 `idcliente` int(11)
 ,`numero_identidad` int(11)
+,`idpersona` int(11)
 ,`nombre_persona` varchar(100)
 ,`apellido_persona` varchar(100)
 ,`genero` char(1)
@@ -204,10 +233,12 @@ CREATE TABLE `clientev` (
 ,`direccion` varchar(50)
 ,`nombre_ciudad` varchar(50)
 ,`telefono` varchar(10)
+,`estado` tinyint(1)
 ,`email_usuario` varchar(50)
 );
 
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `departamento`
 --
@@ -295,18 +326,11 @@ CREATE TABLE `factura` (
 --
 CREATE TABLE `facturav` (
 `id_fac` int(11)
-,`codigo_caja` int(11)
-,`numero_caja` int(11)
-,`ubicacion` varchar(60)
-,`tipo` varchar(50)
-,`codigo_resolucion` int(11)
-,`idcliente` int(11)
-,`numero_identidad` int(11)
-,`nombre_persona` varchar(100)
-,`apellido_persona` varchar(100)
-,`idpedido` int(11)
-,`fecha_pedido` datetime
-,`total_pedido` double
+,`fk_trabaj` int(11)
+,`fk_tipoPago` int(11)
+,`fk_resFac` int(11)
+,`fk_cliente` int(11)
+,`fk_petProducto` int(11)
 );
 
 -- --------------------------------------------------------
@@ -326,7 +350,16 @@ CREATE TABLE `identidad` (
 --
 
 INSERT INTO `identidad` (`ididentidad`, `tipo_identidad`, `numero_identidad`) VALUES
-(1, 'cedula', 1223124);
+(1, 'cedula', 1223124),
+(2, 'cedula', 1735692),
+(3, 'cedula', 54257858),
+(4, 'cedula', 2147483647),
+(5, 'cedula', 4893386),
+(6, 'cedula', 542578583),
+(7, 'cedula', 542578583),
+(8, 'cedula', 542578583),
+(9, 'cedula', 542578585),
+(10, 'cedula', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -391,8 +424,6 @@ CREATE TABLE `pedido_producto` (
 
 CREATE TABLE `permiso` (
   `idpermiso` int(11) NOT NULL,
-  `confbd` tinyint(1) NOT NULL,
-  `confemp` tinyint(1) NOT NULL,
   `admusu` tinyint(1) NOT NULL,
   `regventa` tinyint(1) NOT NULL,
   `regcateprod` tinyint(1) NOT NULL,
@@ -402,9 +433,16 @@ CREATE TABLE `permiso` (
   `vercateprod` tinyint(1) NOT NULL,
   `verproducto` tinyint(1) NOT NULL,
   `reportventa` tinyint(1) NOT NULL,
-  `grafventa` tinyint(1) NOT NULL,
   `estado_permiso` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `permiso`
+--
+
+INSERT INTO `permiso` (`idpermiso`, `admusu`, `regventa`, `regcateprod`, `regproducto`, `modcateprod`, `modproducto`, `vercateprod`, `verproducto`, `reportventa`, `estado_permiso`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(2, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -425,6 +463,18 @@ CREATE TABLE `persona` (
   `estado_persona` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`idpersona`, `ididentidad`, `nombre_persona`, `apellido_persona`, `genero`, `fecha_nacimiento`, `idciudad`, `direccion`, `telefono`, `estado_persona`) VALUES
+(1, 2, 'SENA', 'Bretaña', 'M', '1987-04-23', 1, 'cra 15 ', '3124553489', 1),
+(2, 3, 'TPS-76', 'SENA Bretaña', 'M', '2018-04-16', 102, 'cra 20', '3124553489', 1),
+(3, 4, 'Prueba', 'Tres', 'M', '2018-09-16', 39, 'calle 12', '3245670984', 1),
+(4, 5, 'Daniel', 'Ezequiel', 'M', '1998-12-02', 31, 'cra 20', '3134353489', 1),
+(5, 9, 'Dany', 'Garcia', 'm', '1996-09-27', 102, 'cra 15 ', '3134560978', 1),
+(6, 4, 'jorman', 'Garcia', 'm', '1987-04-06', 7, 'avenida la 5ta de su madre', '2345435345', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -437,10 +487,19 @@ CREATE TABLE `producto` (
   `idproveedor` int(11) NOT NULL,
   `nombre_producto` varchar(50) NOT NULL,
   `venta_producto` double NOT NULL,
-  `imagen_producto` longblob NOT NULL,
+  `imagen_producto` text,
   `compra_producto` double NOT NULL,
   `estado_producto` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idproducto`, `idcatproducto`, `idproveedor`, `nombre_producto`, `venta_producto`, `imagen_producto`, `compra_producto`, `estado_producto`) VALUES
+(3315, 1, 8439233, 'Tenis POD-S3.1', 479900, 'Vistas/assets/uploads/PDO-S3.1.jpg', 308900, 1),
+(3321, 1, 8439233, 'adidas 3', 100000, NULL, 40000, 1),
+(3322, 2, 8439233, 'adidas 2.1', 479900, NULL, 200000, 1);
 
 -- --------------------------------------------------------
 
@@ -459,6 +518,13 @@ CREATE TABLE `proveedor` (
   `email_proveedor` varchar(100) NOT NULL,
   `estado_proveedor` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`idproveedor`, `idciudad`, `razon_social`, `nombre_proveedor`, `apellido_proveedor`, `direccion_proveedor`, `telefono_proveedor`, `email_proveedor`, `estado_proveedor`) VALUES
+(8439233, 7, 'Adidas Colombia Ltda', 'Andrés', 'Quintero', 'cra 5 # 56 -94', '3124954390', 'andres.quintero@adidas.oficial.com', 1);
 
 -- --------------------------------------------------------
 
@@ -483,6 +549,15 @@ CREATE TABLE `stock` (
   `cantidad_stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `stock`
+--
+
+INSERT INTO `stock` (`idstock`, `idproveedor`, `idproducto`, `cantidad_stock`) VALUES
+(1, 8439233, 3315, 56),
+(4, 8439233, 3322, 3),
+(5, 8439233, 3321, 80);
+
 -- --------------------------------------------------------
 
 --
@@ -497,6 +572,14 @@ CREATE TABLE `trabajador` (
   `estado_trabajador` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `trabajador`
+--
+
+INSERT INTO `trabajador` (`idtrabajador`, `idpersona`, `idusuario`, `idcargo`, `estado_trabajador`) VALUES
+(1, 2, 3, 1, 1),
+(2, 3, 4, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -505,15 +588,15 @@ CREATE TABLE `trabajador` (
 --
 CREATE TABLE `trabajadorv` (
 `idtrabajador` int(11)
-,`nit_empresa` int(11)
-,`nombre_empresa` varchar(50)
 ,`numero_identidad` int(11)
+,`idpersona` int(11)
 ,`nombre_persona` varchar(100)
 ,`apellido_persona` varchar(100)
 ,`genero` char(1)
 ,`fecha_nacimiento` date
 ,`telefono` varchar(10)
 ,`nombre_ciudad` varchar(50)
+,`estado` tinyint(1)
 ,`email_usuario` varchar(50)
 ,`nombre_catusuario` varchar(50)
 );
@@ -529,7 +612,7 @@ CREATE TABLE `usuario` (
   `email_usuario` varchar(50) NOT NULL,
   `password_usuario` varchar(100) NOT NULL,
   `tipo_usuario` int(11) NOT NULL,
-  `estado_usuario` int(11) NOT NULL
+  `estado_usuario` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -537,7 +620,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `email_usuario`, `password_usuario`, `tipo_usuario`, `estado_usuario`) VALUES
-(1, 'mm@gmail.com', 'caca', 1, 1);
+(1, 'mm@gmail.com', 'caca', 1, 1),
+(2, 'sena.edu@misena.edu.co', 'sena1234', 3, 1),
+(3, 'tps76ceai@gmail.com', 'sena12345', 1, 1),
+(4, 'modificar@gmail.com', 'modifico2', 2, 1),
+(5, 'ezequiel.dn@misena.edu.co', 'ezequiel', 3, 1),
+(6, 'dany@gmail.com', 'dany', 3, 1),
+(7, 'jorma@gmail.com', 'jorman', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -546,7 +635,7 @@ INSERT INTO `usuario` (`idusuario`, `email_usuario`, `password_usuario`, `tipo_u
 --
 DROP TABLE IF EXISTS `clientev`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `clientev`  AS  select `c`.`idcliente` AS `idcliente`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`direccion` AS `direccion`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`p`.`telefono` AS `telefono`,`u`.`email_usuario` AS `email_usuario` from ((((`cliente` `c` join `persona` `p` on(`c`.`idpersona` = `p`.`idpersona`)) join `ciudad` `ci` on(`p`.`idciudad` = `ci`.`idciudad`)) join `identidad` `id` on(`p`.`ididentidad` = `id`.`ididentidad`)) join `usuario` `u` on(`c`.`idusuario` = `u`.`idusuario`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `clientev`  AS  select `c`.`idcliente` AS `idcliente`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`idpersona` AS `idpersona`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`direccion` AS `direccion`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`p`.`telefono` AS `telefono`,`u`.`estado_usuario` AS `estado`,`u`.`email_usuario` AS `email_usuario` from ((((`cliente` `c` join `persona` `p` on((`c`.`idpersona` = `p`.`idpersona`))) join `ciudad` `ci` on((`p`.`idciudad` = `ci`.`idciudad`))) join `identidad` `id` on((`p`.`ididentidad` = `id`.`ididentidad`))) join `usuario` `u` on((`c`.`idusuario` = `u`.`idusuario`))) ;
 
 -- --------------------------------------------------------
 
@@ -564,8 +653,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW
 --
 DROP TABLE IF EXISTS `trabajadorv`;
 
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `trabajadorv`  AS  select `t`.`idtrabajador` AS `idtrabajador`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`telefono` AS `telefono`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`u`.`email_usuario` AS `email_usuario`,`ca`.`nombre_catusuario` AS `nombre_catusuario` from (((((`trabajador` `t` join `persona` `p` on(`t`.`idpersona` = `p`.`idpersona`)) join `identidad` `id` on(`p`.`ididentidad` = `id`.`ididentidad`)) join `ciudad` `ci` on(`p`.`idciudad` = `ci`.`idciudad`)) join `usuario` `u` on(`t`.`idusuario` = `u`.`idusuario`)) join `categoria_usuario` `ca` on(`t`.`idcargo` = `ca`.`idcatusuario`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `trabajadorv`  AS  select `t`.`idtrabajador` AS `idtrabajador`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`idpersona` AS `idpersona`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`telefono` AS `telefono`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`u`.`estado_usuario` AS `estado`,`u`.`email_usuario` AS `email_usuario`,`ca`.`nombre_catusuario` AS `nombre_catusuario` from (((((`trabajador` `t` join `persona` `p` on((`t`.`idpersona` = `p`.`idpersona`))) join `identidad` `id` on((`p`.`ididentidad` = `id`.`ididentidad`))) join `ciudad` `ci` on((`p`.`idciudad` = `ci`.`idciudad`))) join `usuario` `u` on((`t`.`idusuario` = `u`.`idusuario`))) join `categoria_usuario` `ca` on((`t`.`idcargo` = `ca`.`idcatusuario`))) ;
 
 --
 -- Índices para tablas volcadas
@@ -735,13 +823,13 @@ ALTER TABLE `aprobacion`
 -- AUTO_INCREMENT de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  MODIFY `idcatproducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcatproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_usuario`
 --
 ALTER TABLE `categoria_usuario`
-  MODIFY `idcatusuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcatusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
@@ -753,13 +841,13 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `iddepartamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `iddepartamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
@@ -771,7 +859,7 @@ ALTER TABLE `factura`
 -- AUTO_INCREMENT de la tabla `identidad`
 --
 ALTER TABLE `identidad`
-  MODIFY `ididentidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ididentidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
@@ -801,37 +889,37 @@ ALTER TABLE `pedido_producto`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3322;
 
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `idstock` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idstock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `trabajador`
 --
 ALTER TABLE `trabajador`
-  MODIFY `idtrabajador` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtrabajador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -908,7 +996,7 @@ ALTER TABLE `persona`
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `fk_categoria_producto` FOREIGN KEY (`idcatproducto`) REFERENCES `categoria_producto` (`idcatproducto`),
+  ADD CONSTRAINT `fk_catproducto_producto` FOREIGN KEY (`idcatproducto`) REFERENCES `categoria_producto` (`idcatproducto`),
   ADD CONSTRAINT `fk_proveedor_producto` FOREIGN KEY (`idproveedor`) REFERENCES `proveedor` (`idproveedor`);
 
 --
@@ -921,7 +1009,7 @@ ALTER TABLE `proveedor`
 -- Filtros para la tabla `stock`
 --
 ALTER TABLE `stock`
-  ADD CONSTRAINT `fk_producto_stock` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`),
+  ADD CONSTRAINT `fk_producto_stock` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_proveedor_stock` FOREIGN KEY (`idproveedor`) REFERENCES `proveedor` (`idproveedor`);
 
 --

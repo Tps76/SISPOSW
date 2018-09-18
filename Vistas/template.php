@@ -25,8 +25,10 @@
     if (isset($_SESSION['nueva']) && $_SESSION['nueva'] && isset($_POST['cerrar'])) {
                 # code...
         adminController::cerrar_sesion();
-                // echo "exite";
-    } else {
+        // echo "exite";
+        print_r($_SESSION);
+    } 
+    else {
                 // echo "no existe";
         ClientController::logIn();
     }
@@ -49,6 +51,7 @@
             <?php 
                 adminController::RutaAdminController();
             ?>
+            <div id="toast" class="aviso">hola</div>
         </main>
     </section>
     <!-- Librerias (Jquery, Jquery-UI, Popper, Bootstrap 4) -->
@@ -70,25 +73,19 @@
          ====================== -->
     <!-- ======= BANNER ======= -->
 
-    <aside class="container-fluid banner row d-flex mb-3">
-        <img class="img-fluid" src="src/assets/banner11.jpg" alt="">
-        <h1 class="h1 text-center col-md-12">
-        <?php
-        // session_start();
-        // if (isset($_GET["msg"])) {
-        //     if ($_GET["msg"] == "") {
-                 echo "BANNER";
-        //      } else {
-        //          echo $_GET["msg"];
-        //      }
-        //  } else {
-        //      echo "BANNER";
-        // }
-        ?>
-        </h1>
+    <aside class="banner row" style="max-width: 100vw;">
+        <div class="col m-0">
+            <div class="jumbotron jumbotron-fluid h-100 pt-4" style="min-width: 100vw; background:#008b8a;">
+                <div class="container text-center">
+                    <h1 class="display-4 text-white">Bienvenido</h1>
+                    <p class="lead text-white m-0">Este es la tienda virtual del sistema de punto de venta SISPOSW.</p>
+                    <p class="text-white"><small>copyright &copy by TPS-76.</small></p>
+                </div>
+            </div>
+        </div>
     </aside>
     <!-- ======= HEADER SEARCH BAR ======= -->
-    <header class="container-fluid row n"> 
+    <header class="container-fluid row shadow p-3 m-0" style="background:#08797d;"> 
         <?php include "modules/header.php" ?>
     </header>
     <!--======= FIN HEADER SEARCH BAR ======= -->
@@ -97,12 +94,13 @@
 
 
         <!-- ======= MAIN MENU ======= -->
-        <nav class="col-md-2 d"> 
+        <nav class="col-md-2 pt-3 text-white" style="min-height: 63.3vh; background:#1a151c;"> 
             <?php include "modules/categories.php"; ?>
         </nav>
         <!-- ======= MAIN CONTNTENT ======= -->
         <main class="col-md-10">
             <?php include "modules/products.php" ?>
+            <div id="toast" class="d-none aviso">hola</div>
         </main>
     </div>
     <?php
