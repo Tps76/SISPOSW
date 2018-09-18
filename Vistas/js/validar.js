@@ -1,3 +1,23 @@
+$(function(){
+	$('#id').keyup(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#tel').keyup(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#cel').keyup(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#id').change(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#tel').change(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#cel').change(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+})
 var id_valido = "";
 var email_valido = ""; 
 function validar(){

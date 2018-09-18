@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between p-3">
         <div class="logo text-white ml-3">
-            <h1>SISPOW</h1>
+            <h1>SISPOSW</h1>
         </div>
         <div class="d-flex justify-content-between">
             <span class="dropdown my-3 px-2 mr-2">
