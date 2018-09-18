@@ -84,7 +84,7 @@
                                 <input type="text" class="form-control" name="id" id="id" onkeyup="validar()" onchange="validar()">
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row mt-3"> 
                             <div class="col">
                                 <label for="name">Nombres:</label>
                                 <input type="text" class="form-control" name="name" id="name" onkeyup="validar()" onchange="validar()">

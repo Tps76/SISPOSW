@@ -45,21 +45,19 @@ class CarritoController
     {
         $html = '';
         if (!empty($this->carrito)) {
-                foreach ($this->carrito as $key => $value) {
-                $code = $key;
-                $html.= '<tr>
-                            <td>'.$value['nombre_producto'].'</td>
-                            <td>'.$value['cant'].'</td>
-                            <td>'.$value['venta_producto'].'</td>
-                            <td>
-                                <form method="POST">
-                                    <button type="submit" class="btn btn-danger" name="remove" value="'.$code.'">
-                                    <i class="material-icons">delete_forever</i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>'
-                        ;
+            foreach ($this->carrito as $key => $value) {
+            $code = $key;
+            $html.= '<tr>
+                        <td>'.$value['nombre_producto'].'</td>
+                        <td>'.$value['cant'].'</td>
+                        <td>'.$value['venta_producto'].'</td>
+                        <td>
+                                <button type="button" class="btn btn-danger" id="remove" value="'.$code.'">
+                                <i class="material-icons">delete_forever</i>
+                                </button>
+                        </td>
+                    </tr>'
+                    ;
             }
         }
         echo $html;

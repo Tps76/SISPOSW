@@ -7,7 +7,7 @@ class ClientController
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // $id = $login[''];
             if (isset($_POST["correo_inicio"]) && isset($_POST["pass_inicio"])) {
-                
+                // Array asociativo con todos los datos requeridos.
                 $datos = array(
                     "correo" => $_POST['correo_inicio'], 
                     "pass" => $_POST['pass_inicio']

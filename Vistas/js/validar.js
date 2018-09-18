@@ -33,7 +33,7 @@ function validar(){
     var email = $('#emai').val();
     var dato_email = "usuario";
     var indice = "Start";
-    var campo = "email_usuario";
+    var campo = "email_usuario"; 
     if(email!=""){
         $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: email, dato: dato_email, campo: campo} ).done( function(respuesta)
         {
@@ -45,6 +45,8 @@ function validar(){
                 email_valido = "si";
                 $('#emai').css("border-color", "green");
                 validar_final();
+                console.log();
+                
             }
         });
     }
