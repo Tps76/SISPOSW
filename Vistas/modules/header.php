@@ -143,17 +143,11 @@
                                 <label for="dir">Dirección:</label>
                                 <input type="text" class="form-control" name="dir" id="dir" onkeyup="validar()" onchange="validar()">
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="user">Usuario:</label>
-                                <input type="text" class="form-control" name="user" id="user" onkeyup="validar()" onchange="validar()">
-                            </div>
                             <div class="col">
                                 <label for="pass">Contraseña:</label>
-                                <input type="text" class="form-control" name="pass" id="pass" onkeyup="validar()" onchange="validar()">
+                                <input type="password" class="form-control" name="pass" id="pass" onkeyup="validar()" onchange="validar()">
                             </div>
-                        </div>                
+                        </div>               
                         <div class="text-right mt-3">
                             <input class="btn btn-success col-md-2 py-2" type="submit" value="Enviar" disabled="disabled" id="boton_enviar_registro">
                         </div>
