@@ -34,4 +34,6 @@ $(document).ready(function () {
             $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
         }
     });
+    /*========== Remover producto carrito ===========*/
+    
 });

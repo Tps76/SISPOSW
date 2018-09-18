@@ -4,7 +4,7 @@
 
 class CarritoController
 {
-    private $carrito = array();
+    public $carrito = array();
 
     public function __construct()
     {
@@ -52,9 +52,11 @@ class CarritoController
                         <td>'.$value['cant'].'</td>
                         <td>'.$value['venta_producto'].'</td>
                         <td>
-                                <button type="button" class="btn btn-danger" id="remove" value="'.$code.'">
+                            <form method="post">
+                                <button type="submit" class="btn btn-danger" name="remove" value="'.$code.'">
                                 <i class="material-icons">delete_forever</i>
                                 </button>
+                            <form>
                         </td>
                     </tr>'
                     ;
@@ -67,7 +69,7 @@ class CarritoController
     {
         unset($_SESSION['carrito'][$code]);
         $this->updateCart();
-        // header("location:index.php");
+        header("location:index.php");
     }
 
     public function getTotalpayment()
@@ -86,3 +88,4 @@ class CarritoController
         self::__construct();
     }
 }
+new CarritoController;
