@@ -76,7 +76,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">phone_iphone</i></span>
                         </div>
-                        <input class="form-control" name=contacto type="text" placeholder="Celular" id="cel" onkeyup="validar_cliente()" onchange="validar_cliente()">
+                        <input class="form-control" name=contacto type="text" placeholder="Celular" id="cel" onkeyup="validar_cliente();eliminar_dif_numero(this)" onchange="validar_cliente();eliminar_dif_numero(this)">
                     </div>
                 </div>
                 <div class="row mt-3">
