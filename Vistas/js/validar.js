@@ -284,3 +284,79 @@ function validar_proveedor(){
         }
     }
 }
+
+var id_valido_empleado = "";
+var email_valido_empleado = ""; 
+function validar_empleado(){
+    validar_final();
+    var name = $('#name').val();
+    var lastname = $('#last-name').val();
+    var cel = $('#cel').val();
+    var dir = $('#dir').val();
+    var pass = $('#pass').val();
+    var ciudad = $('#ciudad').val();
+    var pais = $('#pais').val();
+    var cargo = $('#cargo').val();
+    console.log(cargo);
+    var departamento = $('#departamento').val();
+    var genero = $('#genero').val();
+    console.log(genero);
+    var nacimiento = $('#nacimiento').val();
+    var id = $('#id').val();
+    var dato_id = "identidad";
+    var indice = "Start";
+    var campo = "numero_identidad";
+    if(id!="" && id!=" "){
+        $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: id, dato: dato_id, campo: campo} ).done( function(respuesta)
+        {
+            if(respuesta=="true"){
+                id_valido_empleado = "";
+                $('#id').css("border-color", "red");
+                validar_final();
+            }else{
+                id_valido_empleado = "si";
+                $('#id').css("border-color", "green");
+                validar_final();
+            }
+        });
+    }else{
+        $('#id').css("border-color", "#ced4da");
+        id_valido_empleado = "";
+    }
+    var email = $('#emai').val();
+    var dato_email = "usuario";
+    var indice = "Start";
+    var campo = "email_usuario"; 
+    if(email!="" && email!=" "){
+        var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+        if (regex.test(email.trim())) {
+            $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: email, dato: dato_email, campo: campo} ).done( function(respuesta)
+            {
+                if(respuesta=="true"){
+                    email_valido_empleado = "";
+                $('#emai').css("border-color", "red");
+                validar_final();
+            }else{
+                email_valido_empleado = "si";
+                $('#emai').css("border-color", "green");
+                validar_final();
+                
+            }
+        });
+        }else{
+            email_valido_empleado = "";
+            $('#emai').css("border-color", "yellow");
+        }
+    }else{
+        email_valido_empleado = "";
+        $('#emai').css("border-color", "#ced4da");
+    }
+    validar_final();
+    function validar_final(){
+        if (id_valido_empleado!="" && cargo!="0" &&nacimiento!="" && pais!="0" && departamento!="0" && genero!="" && ciudad!="0" && email_valido_empleado!="" && name!="" && lastname!="" && cel!="" && dir!="" && pass!="") {
+            $("#boton_enviar_registro").removeAttr('disabled');
+        }else{
+            $("#boton_enviar_registro").attr('disabled', 'disabled');
+        }
+    }
+}

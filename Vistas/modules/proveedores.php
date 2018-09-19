@@ -70,7 +70,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" name=idProvE type="text" placeholder="Indentificación" id="id" onkeyup="validar_proveedor()" onchange="validar_proveedor()">
+                        <input class="form-control" name=idProvE type="text" placeholder="Identificación" id="id" onkeyup="validar_proveedor()" onchange="validar_proveedor()">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
