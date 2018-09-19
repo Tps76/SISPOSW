@@ -57,4 +57,17 @@ class Categoria
             return false;
         }
     }
+
+    public function prodsXcat($id)
+    {
+        $sql = "SELECT * FROM producto WHERE idcatproducto = ? AND estado_producto = true";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array($id));
+            $tabla = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $tabla;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

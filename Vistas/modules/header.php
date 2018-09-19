@@ -15,10 +15,10 @@
 <section class="col-md-2">
     <p class="align-middle m-0 text-white">Logo empresa</p>
 </section>
-<section class="col-md-7 input-group m-0">
-        <input class="search form-control" type="search" name="search" id="search" method="POST">
-        <input class="search__btn" type="submit" value="Buscar">
-</section>
+<form method="post" class="col-md-7 search input-group m-0">
+    <input class="form-control" type="search" name="buscar" id="search">
+    <input class="search__btn" type="submit">
+</form>
 <section class="col-md-3 d-flex justify-content-end align-items-center">
     <p class="d-inline-block m-0">
     <?php
