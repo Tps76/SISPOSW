@@ -11,7 +11,7 @@ class modelo_combos{
         }
     }
     public function seleccionar_construct(){ 
-        $consulta="SELECT * FROM pais";
+        $consulta="SELECT * FROM pais order by nombre_pais asc";
         echo '<option value="0">Seleccione su país</option>';
         try{
             $resultado = connection::getInstance()->getBD()->prepare($consulta);
@@ -27,7 +27,7 @@ class modelo_combos{
 
 
     public function seleccionar($indice,$requerido,$contencion){
-        $consulta="SELECT * FROM $requerido WHERE id".$contencion."=$indice";
+        $consulta="SELECT * FROM $requerido WHERE id".$contencion."=$indice ORDER BY nombre_".$requerido." ASC";
         echo '<option value="0">Seleccione su '.$requerido.'</option>';
         try{
             $resultado = connection::getInstance()->getBD()->prepare($consulta);

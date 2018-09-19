@@ -1,3 +1,29 @@
+$(function(){
+	$('#id').keyup(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#tel').keyup(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#cel').keyup(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#id').change(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#tel').change(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#cel').change(function (){
+        this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+    $('#emai').keyup(function (){
+        this.value = (this.value + '').replace(/ /, '');
+    });
+    $('#emai').change(function (){
+        this.value = (this.value + '').replace(/ /, '');
+    });
+})
 var id_valido = "";
 var email_valido = ""; 
 function validar(){
@@ -16,7 +42,7 @@ function validar(){
     var dato_id = "identidad";
     var indice = "Start";
     var campo = "numero_identidad";
-    if(id!=""){
+    if(id!="" && id!=" "){
         $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: id, dato: dato_id, campo: campo} ).done( function(respuesta)
         {
             if(respuesta=="true"){
@@ -29,16 +55,20 @@ function validar(){
                 validar_final();
             }
         });
+    }else{
+        $('#id').css("border-color", "#ced4da");
     }
     var email = $('#emai').val();
     var dato_email = "usuario";
     var indice = "Start";
     var campo = "email_usuario"; 
-    if(email!=""){
-        $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: email, dato: dato_email, campo: campo} ).done( function(respuesta)
-        {
-            if(respuesta=="true"){
-                email_valido = "";
+    if(email!="" && email!=" "){
+        var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+        if (regex.test(email.trim())) {
+            $.post( 'Modelo/Process/modelo_validar.php',{ indice: indice ,requerido: email, dato: dato_email, campo: campo} ).done( function(respuesta)
+            {
+                if(respuesta=="true"){
+                    email_valido = "";
                 $('#emai').css("border-color", "red");
                 validar_final();
             }else{
@@ -49,6 +79,11 @@ function validar(){
                 
             }
         });
+        }else{
+            $('#emai').css("border-color", "yellow");
+        }
+    }else{
+        $('#emai').css("border-color", "#ced4da");
     }
     validar_final();
     function validar_final(){

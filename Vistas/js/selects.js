@@ -1,10 +1,12 @@
 $(function(){
+	
 	$.post( 'Modelo/Process/modelo_selects.php' ).done( function(respuesta)
 	{
 		$( '#pais' ).html( respuesta );
 	});
 	$('#pais').change(function()
 	{
+		$( '#ciudad' ).html('<option value="0">Seleccione su ciudad</option>');
         var indice = $(this).val();
         var requerido = "departamento";
         var contencion= "pais";
