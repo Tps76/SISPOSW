@@ -71,13 +71,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">confirmation_number</i></span>
                         </div>
-                        <input class="form-control" name=code type="text" placeholder="Código">
+                        <input class="form-control" name=code type="text" placeholder="Código" id="code_añadirpro_administrador" onkeyup="eliminar_dif_numero(this); validar_producto()" onchange="eliminar_dif_numero(this) ; validar_producto()">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" name=name type="text" placeholder="Nombre">
+                        <input class="form-control" name=name type="text" placeholder="Nombre" id="nombre_añadirpro_administrador" onkeyup="eliminar_dif_texto(this); validar_producto()" onchange="eliminar_dif_texto(this); validar_producto()">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -85,7 +85,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">local_atm</i></span>
                         </div>
-                        <input class="form-control" name=priceSale type="text" placeholder="Precio venta">
+                        <input class="form-control" name=priceSale type="text" placeholder="Precio venta" id="precio_venta_añadirpro_administrador" onkeyup="eliminar_dif_numero(this); validar_producto()" onchange="eliminar_dif_numero(this); validar_producto()">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -94,7 +94,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">local_atm</i></span>
                         </div>
-                        <input class="form-control" name=priceBuy type="text" placeholder="Precio compra">
+                        <input class="form-control" name=priceBuy type="text" placeholder="Precio compra" id="precio_compra_añadirpro_administrador" onkeyup="eliminar_dif_numero(this); validar_producto()" onchange="eliminar_dif_numero(this); validar_producto()">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
@@ -105,7 +105,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">details</i></span>
                         </div>
-                        <select id="cat" name="idcat" class="form-control">
+                        <select id="cat" name="idcat" class="form-control" onchange="validar_producto()">
                             <option selected>Seleccione Categoría</option>
                             <?php adminController::selectCat(); ?>
                         </select>
@@ -114,7 +114,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">assignment_ind</i></span>
                         </div>
-                        <select id="prov" name="idprov" class="form-control">
+                        <select id="prov" name="idprov" class="form-control" onchange="validar_producto()">
                             <option selected>Seleccione el Proveedor</option>
                             <?php adminController::selectProv(); ?>
                         </select>
@@ -126,7 +126,7 @@
                             <span class="input-group-text"><i class="material-icons">folder_open</i></span>
                         </div>
                         <div class="custom-file">
-                            <input class="custom-file-input" name=img type="file" lang="es">
+                            <input id="file_añadirpro_administrador" class="custom-file-input" name=img type="file" lang="es" onchange="validar_producto()">
                             <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">exposure_plus_1</i></span>
                         </div>
-                        <input type="text" name=cant class="form-control" placeholder="Cantidad">
+                        <input type="text" name=cant class="form-control" placeholder="Cantidad" id="cantidad_añadirpro_administrador" onkeyup="eliminar_dif_numero(this) ; validar_producto()" onchange="eliminar_dif_numero(this) ; validar_producto()">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -142,13 +142,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">description</i></span>
                         </div>
-                        <input class="form-control" name=desc type="text" placeholder="Descripción">
+                        <input class="form-control" name=desc type="text" placeholder="Descripción" id="descripcion_añadirpro_administrador" onkeyup="validar_producto()" onchange="validar_producto()">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit">Guardar</button>
+                    <button class="btn btn-success" type="submit" disabled="disabled" id="boton_añadirproducto_administrador">Guardar</button>
                     </form>
                     <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>

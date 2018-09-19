@@ -70,13 +70,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" name=id type="text" placeholder="Indentificación">
+                        <input class="form-control" name=id type="text" placeholder="Identificación" id="id" onkeyup="validar_cliente()" onchange="validar_cliente()">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">phone_iphone</i></span>
                         </div>
-                        <input class="form-control" name=contacto type="text" placeholder="Celular">
+                        <input class="form-control" name=contacto type="text" placeholder="Celular" id="cel" onkeyup="validar_cliente()" onchange="validar_cliente()">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -84,13 +84,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">person</i></span>
                         </div>
-                        <input class="form-control" name=nombre type="text" placeholder="Nombres">
+                        <input class="form-control" name=nombre type="text" placeholder="Nombres" id="name" onkeyup="validar_cliente(); eliminar_dif_texto(this)" onchange="validar_cliente(); eliminar_dif_texto(this)">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">person</i></span>
                         </div>
-                        <input class="form-control" name=apellido type="text" placeholder="Apellidos">
+                        <input class="form-control" name=apellido type="text" placeholder="Apellidos" id="last-name" onkeyup="validar_cliente(); eliminar_dif_texto(this)" onchange="validar_cliente() ; eliminar_dif_texto(this)">
                     </div>
                 </div>     
                 <div class="row mt-3">
@@ -106,14 +106,15 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">date_range</i></span>
                         </div>
-                        <input class="form-control" name=email type="email" placeholder="Correo Electrónico">
+                        <input class="form-control" name=email type="email" placeholder="Correo Electrónico" id="emai" onkeyup="validar_cliente()" onchange="validar_cliente()">
                     </div>
-                    <div class="col input-group">
-                        <div class="form-check-inline">
-                            <label for="genere" class="form-check-label mt-2">Genero:
-                                <input type="radio" class="form-check-input" name="genero" value="M" id="m">Masculino
-                                <input type="radio" class="form-check-input" name="genero" value="F" id="f">Femenino
-                            </label> 
+                    <div class="col">
+                        <div class="input-group-prepend">
+                                       <select class="form-control" name="genero" id="genero" onchange="validar_cliente()">
+                                          <option selected>Seleccione su genero</option>
+                                          <option value="m">Masculino</option>
+                                          <option value="f">Femenino</option>
+                                       </select>
                         </div>
                     </div>
                 </div>
@@ -122,23 +123,23 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">lock</i></span>
                         </div>
-                        <input class="form-control" name=pass type="password" placeholder="Contraseña">
+                        <input class="form-control" name=pass type="password" placeholder="Contraseña" id="pass" onkeyup="validar_cliente()" onchange="validar_cliente()">
                     </div>
                     <div class="col">
-                        <select class=form-control name="pais" id="pais">
-                            <?php adminController::selectPais(); ?>
+                        <select class="form-control" name="pais" id="pais" onchange="validar_cliente()">
+                        <option selected>Seleccione su país</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <select class=form-control name="depto" id="depto">
-                            <option value="">Seleccione primero el país</option>
+                        <select class="form-control" name="depto" id="departamento" onchange="validar_cliente()">
+                        <option selected>Seleccione su departamento</option>
                         </select>
                     </div>
                     <div class="col">
-                        <select class=form-control name="ciudad" id="ciudad">
-                            <option value="">Seleccione primero el departamento</option>
+                        <select class="form-control" name="ciudad" id="ciudad" onchange="validar_cliente()">
+                        <option selected value="0">Seleccione su ciudad</option>
                         </select>
                     </div>
                 </div>
@@ -147,19 +148,19 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">date_range</i></span>
                         </div>
-                        <input type="date" name="date" class="form-control" max="3000-12-31" min="1000-01-01" />
+                        <input type="date" name="date" class="form-control" max="3000-12-31" min="1000-01-01" id="nacimiento" onchange="validar_cliente()"/>
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">drafts</i></span>
                         </div>
-                        <input class="form-control" name=dir type="text" placeholder="Dirección">
+                        <input class="form-control" name=dir type="text" placeholder="Dirección" id="dir" onkeyup="validar_cliente()" onchange="validar_cliente()">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit">Guardar</button>
+                    <button class="btn btn-success" type="submit" disabled="disabled" id="boton_enviar_registro">Guardar</button>
                     </form>
                     <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
