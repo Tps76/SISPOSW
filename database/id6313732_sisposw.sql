@@ -635,7 +635,7 @@ INSERT INTO `usuario` (`idusuario`, `email_usuario`, `password_usuario`, `tipo_u
 --
 DROP TABLE IF EXISTS `clientev`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `clientev`  AS  select `c`.`idcliente` AS `idcliente`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`idpersona` AS `idpersona`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`direccion` AS `direccion`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`p`.`telefono` AS `telefono`,`u`.`estado_usuario` AS `estado`,`u`.`email_usuario` AS `email_usuario` from ((((`cliente` `c` join `persona` `p` on((`c`.`idpersona` = `p`.`idpersona`))) join `ciudad` `ci` on((`p`.`idciudad` = `ci`.`idciudad`))) join `identidad` `id` on((`p`.`ididentidad` = `id`.`ididentidad`))) join `usuario` `u` on((`c`.`idusuario` = `u`.`idusuario`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `clientev`  AS  select `c`.`idcliente` AS `idcliente`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`idpersona` AS `idpersona`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`direccion` AS `direccion`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`p`.`telefono` AS `telefono`,`u`.`estado_usuario` AS `estado`,`u`.`email_usuario` AS `email_usuario` from ((((`cliente` `c` join `persona` `p` on((`c`.`idpersona` = `p`.`idpersona`))) join `ciudad` `ci` on((`p`.`idciudad` = `ci`.`idciudad`))) join `identidad` `id` on((`p`.`ididentidad` = `id`.`ididentidad`))) join `usuario` `u` on((`c`.`idusuario` = `u`.`idusuario`))) ;
 
 -- --------------------------------------------------------
 
@@ -644,7 +644,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW
 --
 DROP TABLE IF EXISTS `facturav`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `facturav`  AS  select `f`.`id_fac` AS `id_fac`,`f`.`fk_trabaj` AS `fk_trabaj`,`f`.`fk_tipoPago` AS `fk_tipoPago`,`f`.`fk_resFac` AS `fk_resFac`,`f`.`fk_cliente` AS `fk_cliente`,`f`.`fk_petProducto` AS `fk_petProducto` from `factura` `f` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `facturav`  AS  select `f`.`id_fac` AS `id_fac`,`f`.`fk_trabaj` AS `fk_trabaj`,`f`.`fk_tipoPago` AS `fk_tipoPago`,`f`.`fk_resFac` AS `fk_resFac`,`f`.`fk_cliente` AS `fk_cliente`,`f`.`fk_petProducto` AS `fk_petProducto` from `factura` `f` ;
 
 -- --------------------------------------------------------
 
@@ -653,7 +653,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW
 --
 DROP TABLE IF EXISTS `trabajadorv`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`id6313732_all`@`%` SQL SECURITY DEFINER VIEW `trabajadorv`  AS  select `t`.`idtrabajador` AS `idtrabajador`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`idpersona` AS `idpersona`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`telefono` AS `telefono`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`u`.`estado_usuario` AS `estado`,`u`.`email_usuario` AS `email_usuario`,`ca`.`nombre_catusuario` AS `nombre_catusuario` from (((((`trabajador` `t` join `persona` `p` on((`t`.`idpersona` = `p`.`idpersona`))) join `identidad` `id` on((`p`.`ididentidad` = `id`.`ididentidad`))) join `ciudad` `ci` on((`p`.`idciudad` = `ci`.`idciudad`))) join `usuario` `u` on((`t`.`idusuario` = `u`.`idusuario`))) join `categoria_usuario` `ca` on((`t`.`idcargo` = `ca`.`idcatusuario`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `trabajadorv`  AS  select `t`.`idtrabajador` AS `idtrabajador`,`id`.`numero_identidad` AS `numero_identidad`,`p`.`idpersona` AS `idpersona`,`p`.`nombre_persona` AS `nombre_persona`,`p`.`apellido_persona` AS `apellido_persona`,`p`.`genero` AS `genero`,`p`.`fecha_nacimiento` AS `fecha_nacimiento`,`p`.`telefono` AS `telefono`,`ci`.`nombre_ciudad` AS `nombre_ciudad`,`u`.`estado_usuario` AS `estado`,`u`.`email_usuario` AS `email_usuario`,`ca`.`nombre_catusuario` AS `nombre_catusuario` from (((((`trabajador` `t` join `persona` `p` on((`t`.`idpersona` = `p`.`idpersona`))) join `identidad` `id` on((`p`.`ididentidad` = `id`.`ididentidad`))) join `ciudad` `ci` on((`p`.`idciudad` = `ci`.`idciudad`))) join `usuario` `u` on((`t`.`idusuario` = `u`.`idusuario`))) join `categoria_usuario` `ca` on((`t`.`idcargo` = `ca`.`idcatusuario`))) ;
 
 --
 -- Índices para tablas volcadas

@@ -82,17 +82,17 @@
                             </div>
                             <div class="col">
                                 <label for="id">Identificación:</label>
-                                <input type="text" class="form-control" name="id" id="id" onkeyup="validar()" onchange="validar()">
+                                <input type="text" class="form-control" name="id" id="id" onkeyup="validar_cliente()" onchange="validar_cliente()">
                             </div>
                         </div>
                         <div class="row mt-3"> 
                             <div class="col">
                                 <label for="name">Nombres:</label>
-                                <input type="text" class="form-control" name="name" id="name" onkeyup="validar()" onchange="validar()">
+                                <input type="text" class="form-control" name="name" id="name" onkeyup="validar(); eliminar_dif_texto(this)" onchange="validar(); eliminar_dif_texto(this)">
                             </div>
                             <div class="col">
                                 <label for="last-name">Apellido:</label>
-                                <input type="text" class="form-control" name="last-name" id="last-name" onkeyup="validar()" onchange="validar()">
+                                <input type="text" class="form-control" name="last-name" id="last-name" onkeyup="validar(); eliminar_dif_texto(this)" onchange="validar(); eliminar_dif_texto(this)">
                             </div>
                             <div class="col">
                                     <label for="genero">Genero: </label>
@@ -105,17 +105,17 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col">
-                                <select name="pais" class="custom-select" id="pais">
-                                    <option selected>Seleccione su país 1</option>
+                                <select name="pais" class="custom-select" id="pais" onchange="validar()">
+                                    <option selected>Seleccione su país</option>
                                 </select>
                             </div>
                             <div class="col">
-                                <select id="departamento" name="departamento" class="custom-select">
+                                <select id="departamento" name="departamento" class="custom-select" onchange="validar()">
                                     <option selected>Seleccione su departamento</option>
                                 </select> 
                             </div>
                             <div class="col">
-                                <select id="ciudad" name="ciudad" class="custom-select" onchange="validar()">
+                                <select id="ciudad" name="ciudad" class="custom-select" onchange="validar()" onchange="validar()">
                                     <option selected value="0">Seleccione su ciudad</option>
                                 </select>
                             </div>

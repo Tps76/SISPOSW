@@ -34,7 +34,6 @@ class adminController
         if ($categories) {
             foreach ($categories as $categoria) {
                 echo '<tr>
-                        <th>' . $categoria['idcatproducto'] . '</th>
                         <th>' . $categoria['nombre_categoria'] . '</th>
                         <th>
                             <div class="d-flex justify-content-between">

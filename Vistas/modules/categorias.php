@@ -12,7 +12,7 @@
                 <div class="row">
                     <form method="POST">
                     <div class="col">
-                        <input type="text" name=addCat class="form-control" placeholder="Nombre categoría">
+                        <input type="text" name=addCat class="form-control" placeholder="Nombre categoría" id="agregar_categoria_admin" onkeyup="eliminar_dif_texto(this)" onchange="eliminar_dif_texto(this)">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -28,7 +28,6 @@
         <table class="table table-responsive-sm table-striped table-bordered">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
                     <th class=col>Nombre</th>
                     <th>Acciones</th>
                 </tr>
@@ -57,7 +56,7 @@
                     <div class="d-none" id="edit"></div>
                     <div class="row">
                         <div class="col">
-                            <input type="text" name=Cat class="form-control" placeholder="Nombre categoría">
+                            <input type="text" name=Cat class="form-control" placeholder="Nombre categoría" id="editar_categoria_admin" onkeyup="eliminar_dif_texto(this)" onchange="eliminar_dif_texto(this)">
                         </div>
                     </div>
             </div>

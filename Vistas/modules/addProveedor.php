@@ -11,7 +11,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="material-icons">perm_identity</i></span>
                         </div>
-                        <input class="form-control" name=idProv type="text" placeholder="Indentificación">
+                        <input class="form-control" name=idProv type="text" placeholder="Identificación">
                     </div>
                     <div class="col input-group">
                         <div class="input-group-prepend">

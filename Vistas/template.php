@@ -61,7 +61,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
     
     <!-- funciones propias -->
-    <script src="Vistas/js/Ajax.js"></script>
+    <!-- <script src="Vistas/js/Ajax.js"></script> -->
     <script src="Vistas/js/selects.js"></script>
     <script src="Vistas/js/function.js"></script>
     <script src="Vistas/js/validar.js"></script>
@@ -115,5 +115,6 @@
     <script src="Vistas/js/selects.js"></script>
     <script src="Vistas/js/function.js"></script>
     <script src="Vistas/js/validar.js"></script>
+    <script src="Vistas/js/numero_letra_val.js"></script>
 </body>
 </html>
