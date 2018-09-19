@@ -120,4 +120,17 @@ class producto{
             return $e;
         }
     }
+
+    public function searchProds($dato)
+    {
+        $sql = "SELECT * FROM producto WHERE nombre_producto LIKE ?";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute(array("%".$dato."%"));
+            $tabla = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $tabla;
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
 }
