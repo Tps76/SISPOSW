@@ -68,39 +68,37 @@
     <script src="Vistas/js/function.js"></script>
     <script src="Vistas/js/validar.js"></script>
     <?php 
-         }else{
-    
+        }else{
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['factura']) && isset($_SESSION['carrito'])) {
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        if (isset($_POST['factura']) && isset($_SESSION['carrito'])) {
+                $carrito = $_SESSION['carrito'];
+                $total = 0;
+                foreach ($carrito as $key => $value) {
+                    $total += $value['subtotal'];
+                }
+                $content = '<page backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">';
+                $content .= '<page_header>';
+                $content .= '</page_header><page_footer></page_footer>';
+                $content .= '<h1>Factura de compra</h1>';
+                $content .= '<hr>';
+                $content .= '<table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">';
+                $content .= '<tr><th>Producto</th><th>Cantidad</th><th>Subtotal</th></tr><tbody>';
+                foreach ($carrito as $shop => $value) {
+                    $content .= "<tr><td>$value[nombre_producto]</td> <td>$value[cant]</td><td>$value[subtotal]</td></tr>";
 
-            $carrito = $_SESSION['carrito'];
-            $total = 0;
-            foreach ($carrito as $key => $value) {
-                $total += $value['subtotal'];
+                }
+                $content .= '</tbody><tfoot><tr><th colspan=2>Total </th> <th>$' . $total;
+                $content .= '</th></tr></tfoot></table></page>';
+
+                echo $content;
+                exit;
+                $pdf = new Html2Pdf('p', 'A4', 'es', false, 'UTF-8', array(mL, mT, mR, mB));
+                $pdf->writeHTML($content);
+                $pdf->output('factura.pdf', 'D'); // Obtener el PDF generado
+                        // Enviar el PDF generado al navegador
             }
-            $content = '<html>';
-            $content .= '<head>';
-            $content .= '</head><body>';
-            $content .= '<h1>Factura de compra</h1>';
-            $content .= '<hr>';
-            $content .= '<table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">';
-            $content .= '<tr><th>Producto</th><th>Cantidad</th><th>Subtotal</th></tr><tbody>';
-            foreach ($carrito as $shop => $value) {
-                $content .= "<tr><td>$value[nombre_producto]</td> <td>$value[cant]</td><td>$value[subtotal]</td></tr>";
-
-            }
-            $content .= '</tbody><tfoot><tr><th colspan=2>Total </th> <th>$' . $total;
-            $content .= '</th></tr></tfoot></table></body></html>';
-
-            echo $content;
-            exit;
-            $pdf = new Html2Pdf('p', 'A4', 'es', true, 'UTF-8');
-            $pdf->writeHTML($content);
-            $pdf->output('factura.pdf'); // Obtener el PDF generado
-                     // Enviar el PDF generado al navegador
         }
-    }
     ?>
     <!-- ======================
             Tienda Virtual 

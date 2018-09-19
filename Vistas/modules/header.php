@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['cliente'])) {
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
+                    <form method="post">
                         <button class="btn btn-success" type="submit" name="factura">Generar Factura</button>
                     </form>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Seguir Comprando</button>

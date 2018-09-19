@@ -60,7 +60,7 @@ class Categoria
 
     public function prodsXcat($id)
     {
-        $sql = "SELECT * FROM producto WHERE idcatproducto = ? AND estado_producto = true";
+        $sql = "SELECT *, stock.cantidad_stock FROM producto INNER JOIN stock ON producto.idproducto = stock.idproducto WHERE producto.idcatproducto = ? AND producto.estado_producto = true";
         try {
             $resultado = connection::getInstance()->getBD()->prepare($sql);
             $resultado->execute(array($id));
