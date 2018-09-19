@@ -34,11 +34,10 @@ class adminController
         if ($categories) {
             foreach ($categories as $categoria) {
                 echo '<tr>
-                        <th>' . $categoria['idcatproducto'] . '</th>
                         <th>' . $categoria['nombre_categoria'] . '</th>
                         <th>
                             <div class="d-flex justify-content-between">
-                                <button class="click btn btn-outline-primary" value="'.$categoria['idcatproducto'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click categoria btn btn-outline-primary" value="'.$categoria['idcatproducto'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" value="'.$categoria['idcatproducto'].'"data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </th>
@@ -63,7 +62,7 @@ class adminController
                         <th> $prov[telefono_proveedor] </th>
                         <th>".'
                             <div class="d-flex justify-content-between">
-                                <button class="click btn btn-outline-primary" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click proveedor btn btn-outline-primary" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" value="'.$prov['idproveedor'].'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </th>
@@ -87,7 +86,7 @@ class adminController
                         <td>'.$prod['venta_producto'].'</td>
                         <td>
                             <div class="d-flex justify-content-around">
-                                <button class="click btn btn-outline-primary" id="'.$prod['idstock'].'" value="'. $prod['idproducto'] .'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click producto btn btn-outline-primary" id="'.$prod['idstock'].'" value="'. $prod['idproducto'] .'" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" id="'.$prod['idstock'].'" value="'. $prod['idproducto'] .'" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
@@ -115,7 +114,7 @@ class adminController
                         <td>
                             <div class="d-flex justify-content-around">
                                 <button class="d-none persona" id="' . $cliente['idpersona'] . '" value="' . $cliente['idpersona'] . '"></button> 
-                                <button class="click btn btn-outline-primary" name="'. $cliente['email_usuario'] .'" id="' . $cliente['idpersona'] . '" value="' . $cliente['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i></button>
+                                <button class="click cliente btn btn-outline-primary" name="'. $cliente['email_usuario'] .'" id="' . $cliente['idpersona'] . '" value="' . $cliente['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i></button>
                                 <button class="click btn btn-outline-danger" value="' . $cliente['email_usuario'] . '" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>
@@ -141,7 +140,7 @@ class adminController
                         <td>' . $empleado['nombre_catusuario'] . '</td>
                         <td>
                             <div class="d-flex justify-content-around">
-                                <button class="click btn btn-outline-primary" name="'. $empleado['email_usuario'] .'" id="' . $empleado['idpersona'] . '" value="' . $empleado['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
+                                <button class="click empleado btn btn-outline-primary" name="'. $empleado['email_usuario'] .'" id="' . $empleado['idpersona'] . '" value="' . $empleado['numero_identidad'] . '" data-toggle="modal" href="#editar"><i class="material-icons d-flex align-item-center ">edit</i> </button>
                                 <button class="click btn btn-outline-danger" value="' . $empleado['email_usuario'] . '" data-toggle="modal" href="#eliminar"><i class="material-icons d-flex align-item-center ">delete</i> </button>
                             </div>
                         </td>

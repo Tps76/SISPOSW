@@ -51,7 +51,7 @@
             <?php 
                 adminController::RutaAdminController();
             ?>
-            <div id="toast" class="aviso">hola</div>
+            <!-- <div id="toast" class="aviso">hola</div> -->
         </main>
     </section>
     <!-- Librerias (Jquery, Jquery-UI, Popper, Bootstrap 4) -->

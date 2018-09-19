@@ -28,7 +28,6 @@
         <table class="table table-responsive-sm table-striped table-bordered">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
                     <th class=col>Nombre</th>
                     <th>Acciones</th>
                 </tr>
