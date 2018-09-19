@@ -110,11 +110,11 @@
                     </div>
                     <div class="col">
                         <div class="input-group-prepend">
-                                       <select class="form-control" name="genero" id="genero" onchange="validar_cliente()">
-                                          <option selected>Seleccione su genero</option>
-                                          <option value="m">Masculino</option>
-                                          <option value="f">Femenino</option>
-                                       </select>
+                            <select class="form-control" name="genero" id="genero" onchange="validar_cliente()">
+                                <option value="">Seleccione su genero</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
                         </div>
                     </div>
                 </div>

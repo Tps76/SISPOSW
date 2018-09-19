@@ -291,4 +291,18 @@ class Usuario
             return false;
         }
     }
+
+    public function countCli()
+    {
+        $sql = "SELECT count(idcliente) FROM cliente";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute();
+            $tabla = $resultado->fetch(); 
+            return $tabla;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
 }

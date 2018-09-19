@@ -2,10 +2,13 @@
     <!-- Las tarjetas de arriba -->
     <div class="row mt-4">
         <?php 
-            $all = array("uno" => array("nombre" => "Clientes","icono"=> "person"),
-                         "dos" => array("nombre" => "Proveedores","icono"=> "assignment_ind"),
-                         "tres" => array("nombre" => "Productos","icono"=> "inbox"),
-                         "cuatro" => array("nombre" => "Ventas","icono"=> "monetization_on")
+            $client = adminController::countCli();
+            $prov = adminController::countProv();
+            $prod = adminController::countProd();
+            $all = array("uno" => array("nombre" => "Clientes","icono"=> "person", "cant" => $client),
+                         "dos" => array("nombre" => "Proveedores","icono"=> "assignment_ind", "cant" => $prov),
+                         "tres" => array("nombre" => "Productos","icono"=> "inbox", "cant" => $prod),
+                         "cuatro" => array("nombre" => "Ventas","icono"=> "monetization_on", "cant" => 0)
                         );
             // echo "<pre>";
             // print_r($all);
@@ -20,7 +23,7 @@
                                 </div>
                                 <div class="card-footer text-muted">
                                     <div class="d-flex justify-content-center">
-                                        <span>2</span>
+                                        <span>'.$value['cant'].'</span>
                                     </div>    
                                 </div>
                             </div>

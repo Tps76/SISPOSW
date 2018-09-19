@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,6 +13,7 @@
     <title>
         <?php  
         session_start();
+        use Spipu\Html2Pdf\Html2Pdf;
             if (isset($_SESSION['admin']) || isset($_SESSION['empleado'])) {
                 echo TITLE1;
             }else{
@@ -61,17 +63,50 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
     
     <!-- funciones propias -->
-    <!-- <script src="Vistas/js/Ajax.js"></script> -->
+    <script src="Vistas/js/Ajax.js"></script>
     <script src="Vistas/js/selects.js"></script>
     <script src="Vistas/js/function.js"></script>
     <script src="Vistas/js/validar.js"></script>
     <?php 
          }else{
+    
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if (isset($_POST['factura']) && isset($_SESSION['carrito'])) {
+
+            $carrito = $_SESSION['carrito'];
+            $total = 0;
+            foreach ($carrito as $key => $value) {
+                $total += $value['subtotal'];
+            }
+            $content = '<html>';
+            $content .= '<head>';
+            $content .= '</head><body>';
+            $content .= '<h1>Factura de compra</h1>';
+            $content .= '<hr>';
+            $content .= '<table border=1 cellspacing=0 cellpadding=2 bordercolor="666633">';
+            $content .= '<tr><th>Producto</th><th>Cantidad</th><th>Subtotal</th></tr><tbody>';
+            foreach ($carrito as $shop => $value) {
+                $content .= "<tr><td>$value[nombre_producto]</td> <td>$value[cant]</td><td>$value[subtotal]</td></tr>";
+
+            }
+            $content .= '</tbody><tfoot><tr><th colspan=2>Total </th> <th>$' . $total;
+            $content .= '</th></tr></tfoot></table></body></html>';
+
+            echo $content;
+            exit;
+            $pdf = new Html2Pdf('p', 'A4', 'es', true, 'UTF-8');
+            $pdf->writeHTML($content);
+            $pdf->output('factura.pdf'); // Obtener el PDF generado
+                     // Enviar el PDF generado al navegador
+        }
+    }
     ?>
     <!-- ======================
             Tienda Virtual 
          ====================== -->
     <!-- ======= BANNER ======= -->
+
 
     <aside class="banner row" style="max-width: 100vw;">
         <div class="col m-0">
@@ -86,7 +121,7 @@
     </aside>
     <!-- ======= HEADER SEARCH BAR ======= -->
     <header class="container-fluid row shadow p-3 m-0" style="background:#08797d;"> 
-        <?php include "modules/header.php" ?>
+        <?php include "modules/header.php"; ?>
     </header>
     <!--======= FIN HEADER SEARCH BAR ======= -->
     
@@ -118,3 +153,4 @@
     <script src="Vistas/js/numero_letra_val.js"></script>
 </body>
 </html>
+<?php ob_end_flush(); ?>

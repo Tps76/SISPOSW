@@ -439,4 +439,17 @@ class ClientController
         }    
     }
 
+    public static function factura()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['factura']) && isset($_SESSION['carrito'])) {
+                $carrito = $_SESSION['carrito'];
+                foreach ($carrito as $key) {
+                    $total += $key['subtotal'];
+                }
+                $factura = PDF::generaPDF($carrito,$total);
+            }
+        }
+    }
+
 }

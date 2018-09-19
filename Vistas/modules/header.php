@@ -1,7 +1,7 @@
 <?php ClientController::register();
-    $cart = new CarritoController();
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['cliente'])) {
-        if (isset($_POST['compra'])) {
+$cart = new CarritoController();
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['cliente'])) {
+    if (isset($_POST['compra'])) {
             $code = $_POST['compra'];
             if (empty($_POST['cantidad']) || !isset($_POST['cantidad'])) {
                 $cantidad = 1;
@@ -9,6 +9,7 @@
                 $cantidad = $_POST['cantidad'];
             }
             $cart->addItem($code, $cantidad);
+            
         }
     }
 ?>
@@ -191,6 +192,9 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <form method="post" action="<?php $_SERVER['PHP_SELF']?>">
+                        <button class="btn btn-success" type="submit" name="factura">Generar Factura</button>
+                    </form>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Seguir Comprando</button>
                 </div>
             </div>

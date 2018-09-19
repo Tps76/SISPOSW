@@ -25,7 +25,7 @@ class Ajax
     }
     public function fieldsProveedor($id)
     {
-        $fields = Usuario::getCliente($id, "");
+        $fields = Proveedor::getProv($id, "");
         echo json_encode($fields);
     }
     public function fieldsCategoria($id)
@@ -68,4 +68,9 @@ if (isset($_POST['idprod'])) {
     $id = $_POST['idprod'];
     $modify = new Ajax();
     $modify->fieldsProducto($id);
+}
+if (isset($_POST['idprov'])) {
+    $id = $_POST['idprov'];
+    $modify = new Ajax();
+    $modify->fieldsProveedor($id);
 }

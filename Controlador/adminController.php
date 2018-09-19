@@ -18,16 +18,21 @@ class adminController
         }
         include $vista;
     }
-    // public static function RutaClienteController()
-    // {
-    //     if (isset($_GET['action'])) {
-    //         $enlace = $_GET['action'];
-    //         $vista = Ruta::rutaCliente();
-    //     } else {
-    //         $vista = "Vistas/modules/products.php";
-    //     }
-    //     include $vista;
-    // }
+    public static function countCli()
+    {
+        $clientes = Usuario::countCli();
+        return $clientes[0];
+    }
+    public static function countProv()
+    {
+        $prov = Proveedor::countProv();
+        return $prov[0];
+    }
+    public static function countProd()
+    {
+        $prod = producto::countProd();
+        return $prod[0];
+    }
     public static function getAllCategories()
     {
         $categories = Categoria::getCategoriaProductoActivo();

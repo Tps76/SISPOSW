@@ -1,39 +1,39 @@
 $(document).ready(function () {
-    $("#pais").on("change", function () {
-        let idPais = $(this).val();
-        let url = "Modelo/Functions/Ajax.php";
-        if (idPais) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: "idPais="+idPais,
-                success: function (response) {
-                    // console.log(response);
-                    $("#depto").html(response);
-                    $("#ciudad").html('<option value="">Seleccione primero Departamento </option>');
-                }
-            });
-        }else{
-            $("#depto").html('<option value="">Seleccione País primero</option>');
-            $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
-        }
-    });
-    $("#depto").on("change", function () {
-        let idDepto = $(this).val();
-        let url = "Modelo/Functions/Ajax.php";
-        if (idDepto) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: "idDepto="+idDepto,
-                success: function (response) {
-                    $("#ciudad").html(response);
-                }
-            });
-        }else{
-            $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
-        }
-    });
+    // $("#pais").on("change", function () {
+    //     let idPais = $(this).val();
+    //     let url = "Modelo/Functions/Ajax.php";
+    //     if (idPais) {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: url,
+    //             data: "idPais="+idPais,
+    //             success: function (response) {
+    //                 // console.log(response);
+    //                 $("#depto").html(response);
+    //                 $("#ciudad").html('<option value="">Seleccione primero Departamento </option>');
+    //             }
+    //         });
+    //     }else{
+    //         $("#depto").html('<option value="">Seleccione País primero</option>');
+    //         $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
+    //     }
+    // });
+    // $("#depto").on("change", function () {
+    //     let idDepto = $(this).val();
+    //     let url = "Modelo/Functions/Ajax.php";
+    //     if (idDepto) {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: url,
+    //             data: "idDepto="+idDepto,
+    //             success: function (response) {
+    //                 $("#ciudad").html(response);
+    //             }
+    //         });
+    //     }else{
+    //         $("#ciudad").html('<option value="">Seleccione primero Departamento</option>');
+    //     }
+    // });
     /* =================================
         MODIFICACIÓN CLIENTE FULL FIELDS 
        ================================= */
@@ -48,6 +48,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 if (response) {
+                    console.log(response);
                     
                     $("[name=id]").attr("value", response['numero_identidad']);
                     $("[name=contacto]").attr("value", response['telefono']);
@@ -57,9 +58,9 @@ $(document).ready(function () {
                     $("[name=date]").attr("value", response['fecha_nacimiento']);
                     $("[name=dir]").attr("value", response['direccion']);
                     if (response['genero'] == "M") {
-                        $("[value=M]").prop('checked',true);
+                        $("#genero option[value=M]").prop('selected',true);
                     } else {
-                        $("[value=F]").prop('checked',true);
+                        $("#genero option[value=F]").prop('selected',true);
                     }                                
                 }
             }
@@ -82,7 +83,7 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (response) {
                     if (response) {
-                        // console.log(response);
+                        console.log(response);
                         
                         $("[name=id]").attr("value", response['numero_identidad']);
                         $("[name=contacto]").attr("value", response['telefono']);
@@ -131,17 +132,7 @@ $(document).ready(function () {
                     $("[name=cant]").attr("value", response['cantidad_stock']);
                     $("#prov option:contains("+response['razon_social']+")").prop("selected", true);
                     $("#cat option:contains(" + response['nombre_categoria'] + ")").prop("selected", true);
-                    $("[name=img]").load(response['imagen_producto']);
-                    if (response['nombre_catusuario'] == "admin") {
-                        $("#cargo option[value='1']").prop('selected', true);
-                    }else{
-                        $("#cargo option[value='2']").prop('selected', true);
-                    }
-                    if (response['genero'] == "M") {
-                        $("[value=M]").prop('checked', true);
-                    } else {
-                        $("[value=F]").prop('checked', true);
-                    }
+                   
                 }
             }
         })
@@ -152,4 +143,37 @@ $(document).ready(function () {
     /* =====================================
         MODIFICACIÓN PROVEEDORES FULL FIELDS 
        ===================================== */
+    $(".proveedor").click(function () {
+        let val = $(this).val();
+        let url = "Modelo/Functions/Ajax.php";
+        $.ajax({
+                type: "POST",
+                url: url,
+                data: "idprov=" + val,
+                // contentType = false,
+                dataType: "json",
+                success: function (response) {
+                    console.log(val);
+                    if (response) {
+                        // console.log(response);
+
+                        $("[name=idProvE]").attr("value", response['idproveedor']);
+                        $("[name=RSProvE]").attr("value", response['razon_social']);
+                        $("[name=namesProvE]").attr("value", response['nombre_proveedor']);
+                        $("[name=lastNameProvE]").attr("value", response['apellido_proveedor']);
+                        $("[name=emailProvE]").attr("value", response['email_proveedor']);
+                        $("[name=dirProvE]").attr("value", response['direccion_proveedor']);
+                        $("[name=contactProvE]").attr("value", response['telefono_proveedor']);
+                        if (response['genero'] == "M") {
+                            $("#genero [value=m]").prop('selected', true);
+                        } else {
+                            $("#genero [value=f]").prop('selected', true);
+                        }
+                    }
+                }
+            })
+            .fail(function () {
+                console.log("error");
+            });
+    });
 });

@@ -96,4 +96,18 @@ class Proveedor
             return false;
         }
     }
+
+    public function countProv()
+    {
+        $consulta = "SELECT count(idproveedor) FROM proveedor WHERE estado_proveedor = true";
+        $con = connection::getInstance();
+        $db = $con->getBD();
+        $stmt = $db->prepare($consulta);
+        if ($stmt->execute()) {
+            return $stmt->fetch();
+        } else {
+            return "error";
+        }
+    }
+
 }

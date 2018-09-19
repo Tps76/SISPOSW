@@ -133,4 +133,18 @@ class producto{
             return $e;
         }
     }
+
+    public function countProd()
+    {
+        $sql = "SELECT count(idproducto) FROM producto WHERE estado_producto = true";
+        try {
+            $resultado = connection::getInstance()->getBD()->prepare($sql);
+            $resultado->execute();
+            $tabla = $resultado->fetch();
+            return $tabla;
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
+
 }
