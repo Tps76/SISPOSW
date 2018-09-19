@@ -16,10 +16,10 @@ require_once "Modelo/Process/Usuario.php";
 require_once "Modelo/Process/Ruta.php";
 require_once "Modelo/Process/categoria.php";
 require_once "Modelo/Process/producto.php";
-require_once "Modelo/Process/proveedor.php";
+require_once "Modelo/Process/Proveedor.php";
 require_once "Modelo/Process/Selects.php";
 require_once "Modelo/Process/uploadFile.php";
-require_once "Modelo/Process/pdf.php";
+// require_once "Modelo/Process/pdf.php";
 /* ==== Librerias ===== */ 
  require_once "vendor/autoload.php";  
 

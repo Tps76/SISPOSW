@@ -123,7 +123,7 @@ class producto{
 
     public function searchProds($dato)
     {
-        $sql = "SELECT * FROM producto WHERE nombre_producto LIKE ?";
+        $sql = "SELECT *, stock.cantidad_stock FROM producto INNER JOIN stock ON producto.idproducto = stock.idproducto WHERE nombre_producto LIKE ?";
         try {
             $resultado = connection::getInstance()->getBD()->prepare($sql);
             $resultado->execute(array("%".$dato."%"));
